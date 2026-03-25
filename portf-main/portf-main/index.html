@@ -624,16 +624,11 @@
     // ── GitHub Contributions ───────────────────────
     (async function fetchGitHubData() {
         try {
-            const res = await fetch('https://api.github.com/graphql', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
-                body: JSON.stringify({ query: `{ user(login:"seijicxz111"){contributionsCollection{contributionCalendar{totalContributions}}} }` })
-            });
+            const res = await fetch('/api/github-stats');
             if (!res.ok) return;
-            const data = await res.json();
-            if (data.errors) return;
-            document.getElementById('total-contributions').textContent = data.data.user.contributionsCollection.contributionCalendar.totalContributions;
-        } catch(e) { console.error(e); }
+            const totalContributions = await res.json();
+            document.getElementById('total-contributions').textContent = totalContributions;
+        } catch(e) { console.error('Failed to fetch GitHub stats:', e); }
     })();
     </script>
 </body>
