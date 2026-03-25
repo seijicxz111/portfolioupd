@@ -299,3 +299,29 @@ header { position:sticky;top:0;z-index:100; }
     background: rgba(255,255,255,0.08); border-color: var(--glass-border);
 }
 [data-theme="light"] .footer-kbd { background: rgba(0,0,0,0.07); }
+/* ── Skills v2 — Radial rings ── */
+.skill-card-v2{padding:1.6rem 2rem;}
+.skill-v2-inner{display:flex;align-items:center;gap:1.8rem;}
+.radial-wrap{position:relative;flex-shrink:0;width:110px;height:110px;}
+.radial-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.radial-bg{fill:none;stroke:rgba(255,255,255,0.07);stroke-width:8;}
+.radial-fill{fill:none;stroke-width:8;stroke-linecap:round;stroke:url(#skillGrad);transition:stroke-dasharray 1.4s cubic-bezier(.4,0,.2,1);}
+.radial-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+.radial-icon{font-size:1.4rem;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.radial-pct{font-size:.78rem;font-weight:700;color:var(--text-secondary);font-family:'Space Mono',monospace;}
+.skill-v2-info{flex:1;}
+.skill-v2-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--text-primary);}
+.skill-v2-desc{font-size:.82rem;color:var(--text-secondary);margin-bottom:0;line-height:1.5;}
+
+/* Proficiency badges */
+.skill-level-badge{display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem;}
+.level-beginner{background:rgba(103,232,249,0.12);color:#67e8f9;border:1px solid rgba(103,232,249,0.25);}
+.level-intermediate{background:rgba(167,139,250,0.15);color:#a78bfa;border:1px solid rgba(167,139,250,0.3);}
+.level-advanced{background:rgba(52,211,153,0.12);color:#34d399;border:1px solid rgba(52,211,153,0.25);}
+
+/* Currently Learning badge */
+.skill-learning-badge{margin-left:auto;display:inline-flex;align-items:center;padding:5px 14px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:50px;font-size:.75rem;font-weight:600;color:#fbbf24;}
+
+/* Tools split rows */
+.tools-row-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;opacity:.7;}
+.tools-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem;flex-wrap:wrap;}

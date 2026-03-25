@@ -13,6 +13,14 @@
 </head>
 <body>
 
+    <svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="skillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#67e8f9"/>
+    </linearGradient>
+  </defs>
+</svg>
     <div id="preloader">
         <div class="preloader-inner">
             <div class="preloader-logo">Seijicxz</div>
@@ -47,8 +55,8 @@
     </div>
     <div id="scroll-progress"></div>
     <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-    <canvas id="cursor-trail"></canvas>
+    <div id="cursor-ring" style="display:none"></div>
+    <canvas id="cursor-trail" style="display:none"></canvas>
     <canvas id="particles-canvas"></canvas>
     <canvas id="aurora-canvas"></canvas>
     <header>
@@ -158,52 +166,124 @@
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Expertise</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Skills</h2>
+
+            <!-- Radial Skill Cards -->
             <div class="row g-4 mb-4">
                 <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
-                    <div class="glass-card skill-card tilt-card shine-card">
+                    <div class="glass-card skill-card-v2 tilt-card shine-card">
                         <div class="shine-effect"></div>
-                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="skill-title">Frontend Development</h3>
-                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:40%"></div></div></div>
+                        <div class="skill-v2-inner">
+                            <div class="radial-wrap">
+                                <svg class="radial-svg" viewBox="0 0 100 100">
+                                    <circle class="radial-bg" cx="50" cy="50" r="42"/>
+                                    <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="40" stroke-dasharray="0 264"/>
+                                </svg>
+                                <div class="radial-center">
+                                    <i class="fas fa-laptop-code radial-icon"></i>
+                                    <span class="radial-pct">0%</span>
+                                </div>
+                            </div>
+                            <div class="skill-v2-info">
+                                <h3 class="skill-v2-title">Frontend Development</h3>
+                                <span class="skill-level-badge level-beginner">Beginner</span>
+                                <p class="skill-v2-desc">HTML, CSS, JavaScript — building responsive UIs and landing pages.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left" data-aos-delay="150">
-                    <div class="glass-card skill-card tilt-card shine-card">
+                    <div class="glass-card skill-card-v2 tilt-card shine-card">
                         <div class="shine-effect"></div>
-                        <div class="skill-icon"><i class="fas fa-server"></i></div>
-                        <h3 class="skill-title">Backend Development</h3>
-                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:40%"></div></div></div>
+                        <div class="skill-v2-inner">
+                            <div class="radial-wrap">
+                                <svg class="radial-svg" viewBox="0 0 100 100">
+                                    <circle class="radial-bg" cx="50" cy="50" r="42"/>
+                                    <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="35" stroke-dasharray="0 264"/>
+                                </svg>
+                                <div class="radial-center">
+                                    <i class="fas fa-server radial-icon"></i>
+                                    <span class="radial-pct">0%</span>
+                                </div>
+                            </div>
+                            <div class="skill-v2-info">
+                                <h3 class="skill-v2-title">Backend Development</h3>
+                                <span class="skill-level-badge level-beginner">Beginner</span>
+                                <p class="skill-v2-desc">Python scripting, basic server logic, and REST API concepts.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
-                    <div class="glass-card skill-card tilt-card shine-card">
+                    <div class="glass-card skill-card-v2 tilt-card shine-card">
                         <div class="shine-effect"></div>
-                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h3 class="skill-title">UI/UX Design</h3>
-                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:60%"></div></div></div>
+                        <div class="skill-v2-inner">
+                            <div class="radial-wrap">
+                                <svg class="radial-svg" viewBox="0 0 100 100">
+                                    <circle class="radial-bg" cx="50" cy="50" r="42"/>
+                                    <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="60" stroke-dasharray="0 264"/>
+                                </svg>
+                                <div class="radial-center">
+                                    <i class="fas fa-paint-brush radial-icon"></i>
+                                    <span class="radial-pct">0%</span>
+                                </div>
+                            </div>
+                            <div class="skill-v2-info">
+                                <h3 class="skill-v2-title">UI/UX Design</h3>
+                                <span class="skill-level-badge level-intermediate">Intermediate</span>
+                                <p class="skill-v2-desc">Glassmorphism, visual hierarchy, Figma prototyping and design systems.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left" data-aos-delay="250">
-                    <div class="glass-card skill-card tilt-card shine-card">
+                    <div class="glass-card skill-card-v2 tilt-card shine-card">
                         <div class="shine-effect"></div>
-                        <div class="skill-icon"><i class="fas fa-database"></i></div>
-                        <h3 class="skill-title">Database Management</h3>
-                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:50%"></div></div></div>
+                        <div class="skill-v2-inner">
+                            <div class="radial-wrap">
+                                <svg class="radial-svg" viewBox="0 0 100 100">
+                                    <circle class="radial-bg" cx="50" cy="50" r="42"/>
+                                    <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="50" stroke-dasharray="0 264"/>
+                                </svg>
+                                <div class="radial-center">
+                                    <i class="fas fa-database radial-icon"></i>
+                                    <span class="radial-pct">0%</span>
+                                </div>
+                            </div>
+                            <div class="skill-v2-info">
+                                <h3 class="skill-v2-title">Database Management</h3>
+                                <span class="skill-level-badge level-intermediate">Intermediate</span>
+                                <p class="skill-v2-desc">MySQL schema design, queries, joins, and data integrity practices.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Languages & Tools — split rows -->
             <div class="glass-card tools-card shine-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="shine-effect"></div>
                 <div class="tools-header">
                     <i class="fas fa-code tools-header-icon"></i>
                     <h3 class="tools-title">Languages &amp; Tools</h3>
+                    <span class="skill-learning-badge"><i class="fas fa-book-open me-1"></i>Learning: React</span>
                 </div>
-                <div class="tools-badges">
+
+                <div class="tools-row-label">Languages</div>
+                <div class="tools-badges mb-3">
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="tool-icon"> HTML</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="tool-icon"> CSS</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS" class="tool-icon"> JavaScript</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tool-icon"> Python</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tool-icon"> MySQL</span>
+                </div>
+
+                <div class="tools-row-label">Tools &amp; Environment</div>
+                <div class="tools-badges">
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="tool-icon"> Git</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="tool-icon" style="filter:invert(1)"> GitHub</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="tool-icon"> VS Code</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="tool-icon"> Figma</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" class="tool-icon"> Bootstrap</span>
                 </div>
             </div>
         </div>
@@ -258,121 +338,8 @@
                             <span class="project-tag">Python</span>
                         </div>
                     </div>
-                </div>                <div class="col-12 mt-3">
-                    <div class="glass-card tech-showcase shine-card" data-aos="fade-up">
-                        <div class="shine-effect"></div>
-                        <h4 class="tech-showcase-title"><i class="fas fa-star"></i> Tech Stack</h4>
-                        <div class="tech-stack-icons">
-                            <div class="tech-stack-item" title="HTML5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
-                            <div class="tech-stack-item" title="CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
-                            <div class="tech-stack-item" title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
-                            <div class="tech-stack-item" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
-                            <div class="tech-stack-item" title="MySQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"></div>
-                            <div class="tech-stack-item" title="Bootstrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"></div>
-                            <div class="tech-stack-item" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
-                            <div class="tech-stack-item" title="VS Code"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-5">
-        <div class="container">
-            <div class="section-label" data-aos="fade-down"><span>Career</span></div>
-            <h2 class="section-title text-center mb-5" data-aos="fade-up">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card timeline-card shine-card">
-                        <div class="shine-effect"></div>
-                        <div class="timeline-meta">
-                            <span class="timeline-badge work"><i class="fas fa-briefcase"></i> Work</span>
-                            <span class="timeline-year">2024 – Present</span>
-                        </div>
-                        <h4 class="timeline-title">Full Stack Developer</h4>
-                        <p class="timeline-sub">Your Company ABC</p>
-                        <p class="timeline-desc">Building responsive web applications with modern tech stack. Collaborating with design and product teams to deliver high-quality solutions.</p>
-                        <div class="timeline-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card timeline-card shine-card">
-                        <div class="shine-effect"></div>
-                        <div class="timeline-meta">
-                            <span class="timeline-badge work"><i class="fas fa-briefcase"></i> Work</span>
-                            <span class="timeline-year">2023 – 2024</span>
-                        </div>
-                        <h4 class="timeline-title">Junior Web Developer</h4>
-                        <p class="timeline-sub">StartUp XYZ</p>
-                        <p class="timeline-desc">Developed and maintained web applications. Implemented features based on requirements and improved code performance.</p>
-                        <div class="timeline-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="py-5">
-        <div class="container">
-            <div class="section-label" data-aos="fade-down"><span>Feedback</span></div>
-            <h2 class="section-title text-center mb-5" data-aos="fade-up">Testimonials</h2>
-            <div class="testimonials-carousel" data-aos="fade-up">
-                <div class="testimonial-slide active">
-                    <div class="glass-card testimonial-card shine-card">
-                        <div class="shine-effect"></div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"CJ is an exceptional developer with great attention to detail. His work on our website was outstanding!"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><img src="https://i.pravatar.cc/300?img=1" alt="Avatar"></div>
-                            <div>
-                                <div class="author-name">John Smith</div>
-                                <div class="author-title">CEO, Tech Company</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="glass-card testimonial-card shine-card">
-                        <div class="shine-effect"></div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Very professional and delivered the project on time. Highly recommended!"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><img src="https://i.pravatar.cc/300?img=2" alt="Avatar"></div>
-                            <div>
-                                <div class="author-name">Sarah Johnson</div>
-                                <div class="author-title">Product Manager</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="glass-card testimonial-card shine-card">
-                        <div class="shine-effect"></div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Great communication and problem-solving skills. A pleasure to work with."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><img src="https://i.pravatar.cc/300?img=3" alt="Avatar"></div>
-                            <div>
-                                <div class="author-name">Mike Chen</div>
-                                <div class="author-title">Project Lead</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonials-controls mt-4 text-center">
-                <button class="testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
-                <div class="testimonial-dots"></div>
-                <button class="testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>            </div>
         </div>
     </section>
 
@@ -380,15 +347,8 @@
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Work</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Projects</h2>
-            <div class="project-filters mb-5 text-center" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> All</button>
-                <button class="filter-btn" data-filter="html"><i class="fab fa-html5"></i> HTML/CSS</button>
-                <button class="filter-btn" data-filter="javascript"><i class="fab fa-js-square"></i> JavaScript</button>
-                <button class="filter-btn" data-filter="python"><i class="fab fa-python"></i> Python</button>
-                <button class="filter-btn" data-filter="mysql"><i class="fas fa-database"></i> Full Stack</button>
-            </div>
-            <div class="row g-4" id="projects-grid">
-                <div class="col-md-4 project-item" data-category="html" data-aos="fade-up" data-aos-delay="100">
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="glass-card project-card tilt-card shine-card">
                         <div class="shine-effect"></div>
                         <div class="project-preview" style="background:linear-gradient(135deg,#7c3aed22,#0891b222)">
@@ -399,14 +359,13 @@
                             <p class="project-desc">A personal portfolio built with HTML, CSS, and JavaScript featuring glassmorphism design.</p>
                             <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JS</span></div>
                             <div class="project-links mt-3">
-                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank" title="View source code"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" class="project-link" target="_blank" title="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
-                                <button class="project-link project-share" title="Share project"><i class="fas fa-share-alt"></i></button>
+                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 project-item" data-category="python" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="glass-card project-card tilt-card shine-card">
                         <div class="shine-effect"></div>
                         <div class="project-preview" style="background:linear-gradient(135deg,#be185d22,#7c3aed22)">
@@ -417,14 +376,13 @@
                             <p class="project-desc">A full-stack web application with Python backend and MySQL database integration.</p>
                             <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">MySQL</span><span class="project-tag">CSS</span></div>
                             <div class="project-links mt-3">
-                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank" title="View source code"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" class="project-link" target="_blank" title="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
-                                <button class="project-link project-share" title="Share project"><i class="fas fa-share-alt"></i></button>
+                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 project-item" data-category="all" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="glass-card project-card project-add tilt-card shine-card">
                         <div class="shine-effect"></div>
                         <div class="project-add-inner">
@@ -525,87 +483,53 @@
                             </div>
                         </div>
                         <div class="contact-detail mt-3">
-                            <div class="contact-detail-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
-                                <div class="contact-detail-label">Phone</div>
-                                <button class="contact-email-btn" title="Click to copy" onclick="navigator.clipboard.writeText('+63 123 456 7890'); alert('Phone copied!')">+63 123 456 7890 <i class="fas fa-copy ms-1"></i></button>
+                                <div class="contact-detail-label">Location</div>
+                                <div class="contact-detail-value"><i class="fas fa-map-pin"></i> Philippines</div>
                             </div>
                         </div>
-                        <div class="contact-detail mt-3">
-                            <div class="contact-detail-icon"><i class="fas fa-map-pin"></i></div>
-                            <div>
-                                <div class="contact-detail-label\">Location</div>
-                                <div class=\"contact-detail-value\"><i class=\"fas fa-map-pin\"></i> Philippines</div>
-                            </div>
-                        </div>
-                        <div class=\"social-row mt-4\">
-                            <a href=\"https://www.facebook.com/violeeee.07\" class=\"social-glass\" title=\"Facebook\"><i class=\"fab fa-facebook-f\"></i></a>
-                            <a href=\"#\" class=\"social-glass\" title=\"Twitter\"><i class=\"fab fa-twitter\"></i></a>
-                            <a href=\"#\" class=\"social-glass\" title=\"LinkedIn\"><i class=\"fab fa-linkedin-in\"></i></a>
-                            <a href=\"https://github.com/seijicxz111\" class=\"social-glass\" title=\"GitHub\"><i class=\"fab fa-github\"></i></a>
+                        <div class="social-row mt-4">
+                            <a href="https://www.facebook.com/violeeee.07" class="social-glass" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-glass" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-glass" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/seijicxz111" class="social-glass" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class=\"col-lg-7\" data-aos=\"fade-left\">
-                    <div class=\"glass-card contact-form-card shine-card h-100\">
-                        <div class=\"shine-effect\"></div>
-                        <div class=\"nav-tabs\" role=\"tablist\">
-                            <button class=\"contact-tab active\" data-tab=\"contact-form\"><i class=\"fas fa-envelope\"></i> Message</button>
-                            <button class=\"contact-tab\" data-tab=\"newsletter\"><i class=\"fas fa-bell\"></i> Newsletter</button>
-                        </div>
-                        <div id=\"contact-form-tab\" class=\"tab-content active\">
-                            <form id=\"contact-form\" action=\"https://formspree.io/f/your-form-id\" method=\"POST\">
-                                <div class=\"row g-3\">
-                                    <div class=\"col-sm-6\">
-                                        <label class=\"form-label-glass\">Name</label>
-                                        <input type=\"text\" name=\"name\" class=\"input-glass\" placeholder=\"Your name\" required>
-                                    </div>
-                                    <div class=\"col-sm-6\">
-                                        <label class=\"form-label-glass\">Email</label>
-                                        <input type=\"email\" name=\"email\" class=\"input-glass\" placeholder=\"your@email.com\" required>
-                                    </div>
-                                    <div class=\"col-12\">
-                                        <label class=\"form-label-glass\">Subject</label>
-                                        <input type=\"text\" name=\"subject\" class=\"input-glass\" placeholder=\"What's this about?\">
-                                    </div>
-                                    <div class=\"col-12\">
-                                        <label class=\"form-label-glass\">Message</label>
-                                        <textarea name=\"message\" class=\"input-glass\" rows=\"5\" placeholder=\"Tell me more…\" required></textarea>
-                                    </div>
-                                    <div class=\"col-12\">
-                                        <button type=\"submit\" class=\"btn-glass-primary w-100 justify-content-center\" id=\"send-btn\">
-                                            <i class=\"fas fa-paper-plane me-2\"></i>Send Message
-                                        </button>
-                                    </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="glass-card contact-form-card shine-card h-100">
+                        <div class="shine-effect"></div>
+                        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label-glass">Name</label>
+                                    <input type="text" name="name" class="input-glass" placeholder="Your name" required>
                                 </div>
-                            </form>
-                        </div>
-                        <div id=\"newsletter-tab\" class=\"tab-content\">
-                            <form id=\"newsletter-form\">
-                                <div class=\"mb-3\">
-                                    <label class=\"form-label-glass\">Subscribe to updates</label>
-                                    <p class=\"text-muted small mb-3\">Get notified about new projects and articles</p>
-                                    <input type=\"email\" id=\"newsletter-email\" class=\"input-glass\" placeholder=\"your@email.com\" required>
+                                <div class="col-sm-6">
+                                    <label class="form-label-glass">Email</label>
+                                    <input type="email" name="email" class="input-glass" placeholder="your@email.com" required>
                                 </div>
-                                <button type=\"submit\" class=\"btn-glass-primary w-100 justify-content-center\">
-                                    <i class=\"fas fa-check me-2\"></i>Subscribe
-                                </button>
-                            </form>
-                        </div>
+                                <div class="col-12">
+                                    <label class="form-label-glass">Subject</label>
+                                    <input type="text" name="subject" class="input-glass" placeholder="What's this about?">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label-glass">Message</label>
+                                    <textarea name="message" class="input-glass" rows="5" placeholder="Tell me more…" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-glass-primary w-100 justify-content-center" id="send-btn">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <button id="floating-chat" class="floating-chat-btn" title="Send message" aria-label="Floating chat button">
-        <i class="fas fa-envelope"></i>
-        <span class="chat-label">Message</span>
-    </button>
-
-    <div class="visitor-counter">
-        <i class="fas fa-eye"></i> <span id="visitor-count">0</span>
-    </div>
 
     <footer class="glass-footer py-4">
         <div class="container">
@@ -677,34 +601,15 @@
         el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
         el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
     });
-    const tc = document.getElementById('cursor-trail'), tCtx = tc.getContext('2d');
-    tc.width = innerWidth; tc.height = innerHeight;
-    window.addEventListener('resize', () => { tc.width = innerWidth; tc.height = innerHeight; });
-    const trails = [];
-    document.addEventListener('mousemove', e => {
-        for (let i = 0; i < 3; i++) trails.push({ x: e.clientX+(Math.random()-.5)*8, y: e.clientY+(Math.random()-.5)*8, r: Math.random()*3+1, alpha: Math.random()*.6+.3, life: 1 });
-    });
-    (function dt() {
-        tCtx.clearRect(0,0,tc.width,tc.height);
-        const c1 = html.getAttribute('data-theme')==='light'?'124,58,237':'167,139,250';
-        const c2 = html.getAttribute('data-theme')==='light'?'8,145,178':'103,232,249';
-        for (let i=trails.length-1;i>=0;i--) {
-            const t=trails[i]; t.life-=.04; t.r*=.97;
-            if (t.life<=0){trails.splice(i,1);continue;}
-            const g=tCtx.createRadialGradient(t.x,t.y,0,t.x,t.y,t.r*3);
-            g.addColorStop(0,`rgba(${c1},${t.alpha*t.life})`); g.addColorStop(1,`rgba(${c2},0)`);
-            tCtx.beginPath(); tCtx.arc(t.x,t.y,t.r*3,0,Math.PI*2); tCtx.fillStyle=g; tCtx.fill();
-        }
-        requestAnimationFrame(dt);
-    })();
+    // Cursor trail disabled
     const ac = document.getElementById('aurora-canvas'), aCtx = ac.getContext('2d');
     ac.width = innerWidth; ac.height = innerHeight;
     window.addEventListener('resize', () => { ac.width = innerWidth; ac.height = innerHeight; });
     const aBlobs = [
-        { x: 0.2, y: 0.3, r: 0.38, hue: 260, speed: 0.0003 },
-        { x: 0.7, y: 0.6, r: 0.42, hue: 190, speed: 0.0004 },
-        { x: 0.5, y: 0.1, r: 0.35, hue: 320, speed: 0.00025 },
-        { x: 0.85, y: 0.2, r: 0.3,  hue: 210, speed: 0.00035 },
+        { x: 0.2, y: 0.3, r: 0.38, hue: 260, speed: 0.00007 },
+        { x: 0.7, y: 0.6, r: 0.42, hue: 190, speed: 0.0001 },
+        { x: 0.5, y: 0.1, r: 0.35, hue: 320, speed: 0.00006 },
+        { x: 0.85, y: 0.2, r: 0.3,  hue: 210, speed: 0.00009 },
     ];
     let aT = 0;
     (function drawAurora() {
@@ -768,19 +673,28 @@
         });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
+    function animateStat(el) {
+        const target = +el.dataset.target, suf = el.dataset.suffix||'';
+        let cur = 0; const step = Math.ceil(target/60);
+        const t = setInterval(() => { cur=Math.min(cur+step,target); el.textContent=cur+(cur===target?suf:''); if(cur>=target)clearInterval(t); },25);
+    }
+    let statsVisible = false;
     const so = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (!e.isIntersecting) return;
-            e.target.querySelectorAll('.stat-number').forEach(el => {
-                const target = +el.dataset.target, suf = el.dataset.suffix||'';
-                let cur = 0; const step = Math.ceil(target/60);
-                const t = setInterval(() => { cur=Math.min(cur+step,target); el.textContent=cur+(cur===target?suf:''); if(cur>=target)clearInterval(t); },25);
-            });
+            statsVisible = true;
+            e.target.querySelectorAll('.stat-number').forEach(animateStat);
             so.unobserve(e.target);
         });
     }, { threshold: 0.5 });
     const sc = document.querySelector('.stats-card');
     if (sc) so.observe(sc);
+    window._reanimateCommitStat = function(val) {
+        const el = document.querySelector('[data-target="120"]');
+        if (!el) return;
+        el.dataset.target = val;
+        if (statsVisible) animateStat(el);
+    };
     function updateClock() {
         const now = new Date();
         const ph = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
@@ -868,128 +782,61 @@
     });
     (async function() {
         try {
-            const res = await fetch('/api/github-stats');
-            if (!res.ok) return;
-            const totalContributions = await res.json();
-            document.getElementById('total-contributions').textContent = totalContributions;
+            const username = 'seijicxz111';
+            const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&type=owner`);
+            if (!reposRes.ok) throw new Error('repos fetch failed');
+            const repos = await reposRes.json();
+            let totalCommits = 0;
+            // Sequential: skip 409 (empty repos) and other errors gracefully
+            for (const repo of repos) {
+                try {
+                    const r = await fetch(`https://api.github.com/repos/${username}/${repo.name}/commits?author=${username}&per_page=1`);
+                    if (!r.ok) continue;
+                    const link = r.headers.get('Link') || '';
+                    const match = link.match(/[?&]page=(\d+)>; rel="last"/);
+                    if (match) {
+                        totalCommits += parseInt(match[1]);
+                    } else {
+                        const data = await r.json();
+                        totalCommits += Array.isArray(data) ? data.length : 0;
+                    }
+                } catch {}
+            }
+            if (totalCommits > 0) {
+                window._reanimateCommitStat(totalCommits);
+                const contribEl = document.getElementById('total-contributions');
+                if (contribEl) contribEl.textContent = totalCommits;
+            }
         } catch(e) { console.error('Failed to fetch GitHub stats:', e); }
     })();
 
-    // Project Filtering
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            document.querySelectorAll('.project-item').forEach(item => {
-                const cat = item.dataset.category;
-                item.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
-            });
+    // Radial skill ring animation
+    function animateRadials() {
+        document.querySelectorAll('.radial-fill').forEach(circle => {
+            const pct = parseFloat(circle.dataset.pct);
+            const circ = 2 * Math.PI * 42;
+            const dash = (pct / 100) * circ;
+            circle.style.strokeDasharray = dash + ' ' + circ;
+            // Animate percentage text
+            const pctEl = circle.closest('.radial-wrap').querySelector('.radial-pct');
+            let cur = 0;
+            const step = pct / 60;
+            const t = setInterval(() => {
+                cur = Math.min(cur + step, pct);
+                pctEl.textContent = Math.round(cur) + '%';
+                if (cur >= pct) clearInterval(t);
+            }, 20);
         });
-    });
-
-    // Testimonials Carousel
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const totalSlides = slides.length;
-    const dotsContainer = document.querySelector('.testimonial-dots');
-    
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('span');
-        dot.className = `testimonial-dot ${i === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
     }
-    
-    function showSlide(n) {
-        slides.forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.testimonial-dot').forEach(d => d.classList.remove('active'));
-        slides[n].classList.add('active');
-        document.querySelectorAll('.testimonial-dot')[n].classList.add('active');
-    }
-    
-    function goToSlide(n) {
-        currentSlide = n;
-        showSlide(currentSlide);
-    }
-    
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-    }
-    
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        showSlide(currentSlide);
-    }
-    
-    document.querySelector('.testimonial-next').addEventListener('click', nextSlide);
-    document.querySelector('.testimonial-prev').addEventListener('click', prevSlide);
-    setInterval(nextSlide, 8000);
-
-    // Project Share Buttons
-    document.querySelectorAll('.project-share').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            const projectCard = btn.closest('.project-card');
-            const title = projectCard.querySelector('.project-title').textContent;
-            const shareText = `Check out this project: ${title}\n${window.location.href}`;
-            if (navigator.share) {
-                navigator.share({ title, text: shareText, url: window.location.href });
-            } else {
-                navigator.clipboard.writeText(shareText);
-                alert('Project link copied!');
-            }
+    const radialObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            animateRadials();
+            radialObs.disconnect();
         });
-    });
-
-    // Floating Chat Button
-    document.getElementById('floating-chat').addEventListener('click', () => {
-        document.getElementById('contact-form-tab').click();
-        const contactSection = document.getElementById('contact');
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Newsletter Subscription
-    document.getElementById('newsletter-form').addEventListener('submit', async e => {
-        e.preventDefault();
-        const email = document.getElementById('newsletter-email').value;
-        toast.textContent = '✓ Subscribed! Check your email for details.';
-        toast.classList.add('toast-show');
-        setTimeout(() => toast.classList.remove('toast-show'), 3000);
-        e.target.reset();
-    });
-
-    // Contact Form Tabs
-    document.querySelectorAll('.contact-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabName = tab.dataset.tab;
-            document.querySelectorAll('.contact-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-        });
-    });
-
-    // Visitor Counter (using localStorage)
-    let visitors = parseInt(localStorage.getItem('portfolio-visitors')) || 0;
-    visitors++;
-    localStorage.setItem('portfolio-visitors', visitors);
-    document.getElementById('visitor-count').textContent = visitors;
-
-    // Copy Phone
-    document.querySelectorAll('.contact-email-btn').forEach(btn => {
-        if (btn !== document.getElementById('copy-email-btn')) {
-            btn.addEventListener('click', () => {
-                const text = btn.textContent.split(' ')[0];
-                navigator.clipboard.writeText(text).catch(()=>{});
-                toast.textContent = '✓ Copied!';
-                toast.classList.add('toast-show');
-                setTimeout(() => toast.classList.remove('toast-show'), 2000);
-            });
-        }
-    });
-
+    }, { threshold: 0.3 });
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) radialObs.observe(skillsSection);
     </script>
 </body>
 </html>
