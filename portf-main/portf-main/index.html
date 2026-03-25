@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejicxz</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ── Preloader ───────────────────────────── -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">Seijicxz</div>
+            <div class="preloader-bar"><div class="preloader-fill"></div></div>
+            <p class="preloader-text">Loading portfolio…</p>
+        </div>
+    </div>
+
+    <!-- ── Toast Notification ──────────────────── -->
+    <div id="toast" class="toast-notif"><i class="fas fa-check-circle me-2"></i>Email copied!</div>
+
+    <!-- ── Back to Top ─────────────────────────── -->
+    <button id="back-to-top" title="Back to top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ── Scroll Progress ─────────────────────── -->
+    <div id="scroll-progress"></div>
+
+    <!-- ── Custom Cursor ───────────────────────── -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <canvas id="cursor-trail"></canvas>
+
+    <!-- ── Particles ───────────────────────────── -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ── Background Orbs ─────────────────────── -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- ── Navbar ──────────────────────────────── -->
+    <header>
+        <nav class="navbar navbar-expand-lg glass-nav">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand brand-logo" href="#">Seijicxz</a>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="toggle-track">
+                            <span class="toggle-thumb">
+                                <i class="fas fa-moon toggle-icon-dark"></i>
+                                <i class="fas fa-sun toggle-icon-light"></i>
+                            </span>
+                        </span>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-1">
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#stats">Stats</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ── About ───────────────────────────────── -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="glass-card hero-card tilt-card" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span class="greeting-badge">👋 Welcome</span>
+                        <h2 class="hero-title mt-3 mb-2">Hello World!</h2>
+                        <h4 class="hero-subtitle mb-1">I'm <span class="highlight">CJ Steeve Cadenas</span></h4>
+                        <h4 class="hero-subtitle mb-3">
+                            <span class="typing-prefix">Aspiring </span><span id="typed-role" class="typed-role"></span><span class="typed-cursor">|</span>
+                        </h4>
+                        <p class="hero-desc">Welcome to my portfolio! I am an aspiring web developer who is passionate about creating beautiful and functional websites.</p>
+                        <div class="hero-cta mt-4 d-flex flex-wrap gap-2">
+                            <a href="#contact" class="btn-glass-primary">Get In Touch</a>
+                            <a href="#" class="btn-glass-secondary" download>
+                                <i class="fas fa-download me-2"></i>Resume
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center mt-4 mt-md-0">
+                        <div class="profile-img-wrapper">
+                            <img src="https://64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png" class="profile-img" alt="Profile Image">
+                            <div class="img-ring"></div>
+                            <div class="img-ring-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Stats Counter ───────────────────────── -->
+    <section id="stats" class="py-4">
+        <div class="container">
+            <div class="glass-card stats-card" data-aos="fade-up">
+                <div class="row g-0 text-center">
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label">Projects Built</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-number" data-target="120">0</div>
+                        <div class="stat-label">GitHub Commits</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-number" data-target="999" data-suffix="+">0</div>
+                        <div class="stat-label">Cups of Coffee ☕</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Skills ──────────────────────────────── -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="section-label" data-aos="fade-down"><span>Expertise</span></div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Skills</h2>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="glass-card skill-card tilt-card">
+                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="skill-title">Frontend Development</h3>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--target-width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="150">
+                    <div class="glass-card skill-card tilt-card">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="skill-title">Backend Development</h3>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--target-width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                    <div class="glass-card skill-card tilt-card">
+                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3 class="skill-title">UI/UX Design</h3>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--target-width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="250">
+                    <div class="glass-card skill-card tilt-card">
+                        <div class="skill-icon"><i class="fas fa-database"></i></div>
+                        <h3 class="skill-title">Database Management</h3>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--target-width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card tools-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="tools-header">
+                    <i class="fas fa-code tools-header-icon"></i>
+                    <h3 class="tools-title">Languages &amp; Tools</h3>
+                </div>
+                <div class="tools-badges">
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="tool-icon"> HTML</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="tool-icon"> CSS</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tool-icon"> JavaScript</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tool-icon"> Python</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tool-icon"> MySQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Projects ────────────────────────────── -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="section-label" data-aos="fade-down"><span>Work</span></div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Projects</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card project-card tilt-card">
+                        <div class="project-preview" style="background: linear-gradient(135deg, #7c3aed22, #0891b222);">
+                            <i class="fas fa-globe project-preview-icon"></i>
+                        </div>
+                        <div class="project-body">
+                            <h4 class="project-title">Portfolio Website</h4>
+                            <p class="project-desc">A personal portfolio built with HTML, CSS, and JavaScript featuring glassmorphism design.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JS</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card project-card tilt-card">
+                        <div class="project-preview" style="background: linear-gradient(135deg, #be185d22, #7c3aed22);">
+                            <i class="fas fa-code project-preview-icon"></i>
+                        </div>
+                        <div class="project-body">
+                            <h4 class="project-title">Web App Project</h4>
+                            <p class="project-desc">A full-stack web application with Python backend and MySQL database integration.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">MySQL</span>
+                                <span class="project-tag">CSS</span>
+                            </div>
+                            <div class="project-links mt-3">
+                                <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card project-card project-add tilt-card">
+                        <div class="project-add-inner">
+                            <div class="project-add-icon"><i class="fas fa-plus"></i></div>
+                            <p class="project-add-text">More coming soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Education / Certifications ──────────── -->
+    <section id="education" class="py-5">
+        <div class="container">
+            <div class="section-label" data-aos="fade-down"><span>Background</span></div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Education &amp; Certifications</h2>
+            <div class="timeline">
+
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-badge edu">Education</span>
+                            <span class="timeline-year">2023 – Present</span>
+                        </div>
+                        <h4 class="timeline-title">Bachelor of Science in Information Technology</h4>
+                        <p class="timeline-sub">Your University Name</p>
+                        <p class="timeline-desc">Studying core computer science concepts, web development, database systems, and software engineering principles.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item timeline-item-right" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-badge cert">Certification</span>
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <h4 class="timeline-title">Responsive Web Design</h4>
+                        <p class="timeline-sub">freeCodeCamp</p>
+                        <p class="timeline-desc">Completed 300+ hours covering HTML, CSS, Flexbox, Grid, and accessibility best practices.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-badge cert">Certification</span>
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <h4 class="timeline-title">Python for Everybody</h4>
+                        <p class="timeline-sub">Coursera / University of Michigan</p>
+                        <p class="timeline-desc">Learned Python fundamentals including data structures, web scraping, databases, and data visualization.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── GitHub Activity ──────────────────────── -->
+    <section class="py-5">
+        <div class="container">
+            <div class="glass-card" data-aos="fade-up">
+                <div class="contrib-header">
+                    <i class="fab fa-github contrib-icon"></i>
+                    <div>
+                        <h3 class="contrib-title">GitHub Activity</h3>
+                        <p class="contrib-sub">Contributions in the last year: <span id="total-contributions" class="contrib-count">—</span></p>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-lg-10 text-center">
+                        <div class="chart-wrapper">
+                            <img src="https://ghchart.rshah.org/seijicxz111" alt="GitHub Contribution Chart" class="custom-chart-size img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Contact ──────────────────────────────── -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="section-label" data-aos="fade-down"><span>Get In Touch</span></div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Contact Me</h2>
+            <div class="row g-4">
+                <!-- Info side -->
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="glass-card contact-info-card h-100">
+                        <h4 class="contact-info-title">Let's talk 👋</h4>
+                        <p class="contact-info-desc">Have a project in mind or just want to say hi? Drop a message and I'll get back to you!</p>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="contact-detail-label">Email</div>
+                                <button id="copy-email-btn" class="contact-email-btn" title="Click to copy">
+                                    cjsteevecadenas0@gmail.com <i class="fas fa-copy ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="contact-detail mt-3">
+                            <div class="contact-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="contact-detail-label">Location</div>
+                                <div class="contact-detail-value">Philippines 🇵🇭</div>
+                            </div>
+                        </div>
+                        <div class="social-row mt-4">
+                            <a href="https://www.facebook.com/violeeee.07" class="social-glass" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-glass" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-glass" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/seijicxz111" class="social-glass" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form side -->
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="glass-card contact-form-card h-100">
+                        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label-glass">Name</label>
+                                    <input type="text" name="name" class="input-glass" placeholder="Your name" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label-glass">Email</label>
+                                    <input type="email" name="email" class="input-glass" placeholder="your@email.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label-glass">Subject</label>
+                                    <input type="text" name="subject" class="input-glass" placeholder="What's this about?">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label-glass">Message</label>
+                                    <textarea name="message" class="input-glass" rows="5" placeholder="Tell me more…" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-glass-primary w-100 justify-content-center" id="send-btn">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass-footer py-4">
+        <div class="container text-center">
+            <p class="footer-text">&copy; 2024 Seijicxz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+    // ── Preloader ──────────────────────────────────
+    window.addEventListener('load', () => {
+        const pre = document.getElementById('preloader');
+        setTimeout(() => {
+            pre.classList.add('preloader-hide');
+            setTimeout(() => pre.remove(), 600);
+        }, 1800);
+
+        // Skill bars
+        setTimeout(() => {
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                bar.style.width = getComputedStyle(bar).getPropertyValue('--target-width').trim();
+            });
+        }, 2200);
+    });
+
+    // ── AOS ────────────────────────────────────────
+    AOS.init({ duration: 800, once: true });
+
+    // ── Scroll Progress ────────────────────────────
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('scroll-progress').style.width = (scrollTop / scrollHeight * 100) + '%';
+
+        // Back to top visibility
+        document.getElementById('back-to-top').classList.toggle('visible', scrollTop > 400);
+    });
+
+    // ── Back to Top ────────────────────────────────
+    document.getElementById('back-to-top').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Active Nav ─────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-pill');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+        navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+        });
+    });
+
+    // ── Typing Animation ───────────────────────────
+    const roles = ['Web Developer', 'UI Designer', 'Problem Solver', 'Python Enthusiast'];
+    let rIdx = 0, cIdx = 0, deleting = false;
+    const typedEl = document.getElementById('typed-role');
+    function type() {
+        const cur = roles[rIdx];
+        typedEl.textContent = deleting ? cur.substring(0, cIdx - 1) : cur.substring(0, cIdx + 1);
+        deleting ? cIdx-- : cIdx++;
+        if (!deleting && cIdx === cur.length) { deleting = true; setTimeout(type, 1800); return; }
+        if (deleting && cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
+        setTimeout(type, deleting ? 60 : 100);
+    }
+    type();
+
+    // ── Theme Toggle ───────────────────────────────
+    const html = document.documentElement;
+    html.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    // ── Custom Cursor ──────────────────────────────
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+    })();
+    document.querySelectorAll('a, button, .tool-badge, .project-card, .tilt-card').forEach(el => {
+        el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
+    });
+
+    // ── Glowing Cursor Trail ───────────────────────
+    const trailCanvas = document.getElementById('cursor-trail');
+    const tCtx = trailCanvas.getContext('2d');
+    trailCanvas.width = window.innerWidth;
+    trailCanvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { trailCanvas.width = window.innerWidth; trailCanvas.height = window.innerHeight; });
+    const trails = [];
+    document.addEventListener('mousemove', e => {
+        for (let i = 0; i < 3; i++) {
+            trails.push({
+                x: e.clientX + (Math.random() - 0.5) * 8,
+                y: e.clientY + (Math.random() - 0.5) * 8,
+                r: Math.random() * 3 + 1,
+                alpha: Math.random() * 0.6 + 0.3,
+                life: 1
+            });
+        }
+    });
+    (function drawTrail() {
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        const theme = html.getAttribute('data-theme');
+        const c1 = theme === 'light' ? '124, 58, 237' : '167, 139, 250';
+        const c2 = theme === 'light' ? '8, 145, 178' : '103, 232, 249';
+        for (let i = trails.length - 1; i >= 0; i--) {
+            const t = trails[i];
+            t.life -= 0.04; t.r *= 0.97;
+            if (t.life <= 0) { trails.splice(i, 1); continue; }
+            const grad = tCtx.createRadialGradient(t.x, t.y, 0, t.x, t.y, t.r * 3);
+            grad.addColorStop(0, `rgba(${c1}, ${t.alpha * t.life})`);
+            grad.addColorStop(1, `rgba(${c2}, 0)`);
+            tCtx.beginPath();
+            tCtx.arc(t.x, t.y, t.r * 3, 0, Math.PI * 2);
+            tCtx.fillStyle = grad;
+            tCtx.fill();
+        }
+        requestAnimationFrame(drawTrail);
+    })();
+
+    // ── Background Particles ───────────────────────
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+    for (let i = 0; i < 120; i++) particles.push({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3, vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3, alpha: Math.random() * 0.5 + 0.1
+    });
+    (function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const col = html.getAttribute('data-theme') === 'light' ? '100,60,200' : '167,139,250';
+        particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${col},${p.alpha})`; ctx.fill();
+        });
+        for (let i = 0; i < particles.length; i++) for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+            const d = Math.sqrt(dx*dx+dy*dy);
+            if (d < 100) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(${col},${0.08*(1-d/100)})`; ctx.lineWidth=0.5; ctx.stroke(); }
+        }
+        requestAnimationFrame(drawParticles);
+    })();
+
+    // ── Tilt Effect on Cards ───────────────────────
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+            const dx = (e.clientX - cx) / (rect.width / 2);
+            const dy = (e.clientY - cy) / (rect.height / 2);
+            card.style.transform = `perspective(800px) rotateX(${-dy * 6}deg) rotateY(${dx * 6}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    // ── Stats Counter ──────────────────────────────
+    const statsObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('.stat-number').forEach(el => {
+                const target = +el.dataset.target;
+                const suffix = el.dataset.suffix || '';
+                let current = 0;
+                const step = Math.ceil(target / 60);
+                const timer = setInterval(() => {
+                    current = Math.min(current + step, target);
+                    el.textContent = current + (current === target ? suffix : '');
+                    if (current >= target) clearInterval(timer);
+                }, 25);
+            });
+            statsObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.5 });
+    statsObserver.observe(document.querySelector('.stats-card'));
+
+    // ── Copy Email Toast ───────────────────────────
+    const toast = document.getElementById('toast');
+    function showToast() {
+        navigator.clipboard.writeText('cjsteevecadenas0@gmail.com').catch(() => {});
+        toast.classList.add('toast-show');
+        setTimeout(() => toast.classList.remove('toast-show'), 2500);
+    }
+    document.getElementById('copy-email-btn').addEventListener('click', showToast);
+
+    // ── Contact Form ───────────────────────────────
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('send-btn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending…';
+        btn.disabled = true;
+        // Replace with your real Formspree endpoint; for now just simulate
+        await new Promise(r => setTimeout(r, 1500));
+        btn.innerHTML = '<i class="fas fa-check me-2"></i>Sent!';
+        setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message'; btn.disabled = false; e.target.reset(); }, 3000);
+    });
+
+    // ── GitHub Contributions ───────────────────────
+    (async function fetchGitHubData() {
+        try {
+            const res = await fetch('https://api.github.com/graphql', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
+                body: JSON.stringify({ query: `{ user(login:"seijicxz111"){contributionsCollection{contributionCalendar{totalContributions}}} }` })
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data.errors) return;
+            document.getElementById('total-contributions').textContent = data.data.user.contributionsCollection.contributionCalendar.totalContributions;
+        } catch(e) { console.error(e); }
+    })();
+    </script>
+</body>
+</html>
