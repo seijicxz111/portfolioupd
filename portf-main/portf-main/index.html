@@ -165,8 +165,7 @@
     @keyframes avail-pulse { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6} }
 
     /* ── Radial skill rings ── */
-    .radial-bg { fill:none; stroke:rgba(255,255,255,0.07); stroke-width:8; }
-    .radial-fill { fill:none; stroke-width:8; stroke-linecap:round; stroke:url(#skillGrad); transition:stroke-dasharray 1.4s cubic-bezier(.4,0,.2,1); }
+
 
     /* ── Tilt ── */
     .tilt-card { transform-style:preserve-3d; will-change:transform; }
@@ -336,6 +335,50 @@
     .mm-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
     .mm-ctrl-btn { padding:6px 14px; border-radius:50px; background:var(--glass-bg); border:1px solid var(--glass-border); color:var(--text-secondary); font-size:.75rem; font-weight:600; cursor:pointer; transition:all .2s; }
     .mm-ctrl-btn:hover { color:var(--accent-1); border-color:rgba(167,139,250,.4); background:rgba(167,139,250,.08); }
+
+    /* ── Skill Tag Cloud ── */
+    .skill-icon-wrap {
+      flex-shrink: 0;
+      width: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .skill-icon-glow {
+      width: 56px; height: 56px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.55rem;
+      position: relative;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .skill-icon-glow::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 22px;
+      opacity: 0;
+      transition: opacity .4s;
+      filter: blur(12px);
+    }
+    .glass-card:hover .skill-icon-glow { transform: scale(1.12) translateY(-2px); }
+    .glass-card:hover .skill-icon-glow::after { opacity: 1; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+    .skill-tag {
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 8px; border-radius: 50px;
+      border: 1px solid; letter-spacing: .3px;
+      opacity: 0; transform: translateY(6px) scale(.92);
+      animation: tag-pop .35s cubic-bezier(.34,1.56,.64,1) forwards;
+      cursor: default;
+      transition: filter .2s, transform .2s;
+    }
+    .skill-tag:hover { filter: brightness(1.35); transform: translateY(-1px) scale(1.06) !important; }
+    @keyframes tag-pop {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    /* stagger delays handled inline */
 
     /* ── Hex Skill Grid ── */
     #hex-skills { padding:2.5rem 0; }
@@ -625,16 +668,13 @@
       <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-right" data-aos-delay="100">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
-          <div style="position:relative;flex-shrink:0;width:110px;height:110px;">
-            <svg style="width:100%;height:100%;transform:rotate(-90deg);" viewBox="0 0 100 100" aria-hidden="true">
-              <circle class="radial-bg" cx="50" cy="50" r="42"/>
-              <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="40" stroke-dasharray="0 264"/>
-            </svg>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
-              <i class="fas fa-laptop-code grad-text" style="font-size:1.4rem;" aria-hidden="true"></i>
-              <span class="radial-pct grad-text" style="font-size:.78rem;font-weight:700;font-family:'Space Mono',monospace;">0%</span>
+          <div class="skill-icon-wrap">
+              <div class="skill-icon-glow" style="background:rgba(103,232,249,0.1);">
+                <i class="fas fa-laptop-code" style="color:#67e8f9;filter:drop-shadow(0 0 8px #67e8f9);" aria-hidden="true"></i>
+                <style>.skill-icon-glow::after{background:#67e8f9;}</style>
+              </div>
+              <div class="skill-tags"><span class="skill-tag" style="color:#f97316;background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.35);animation-delay:0.08s;">HTML</span><span class="skill-tag" style="color:#38bdf8;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.35);animation-delay:0.15s;">CSS</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35);animation-delay:0.22s;">JS</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.29s;">DOM</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.36s;">Responsive</span></div>
             </div>
-          </div>
           <div style="flex:1;">
             <h3 style="font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--text-primary);">Frontend Development</h3>
             <span style="display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem;background:rgba(103,232,249,0.12);color:#67e8f9;border:1px solid rgba(103,232,249,0.25);">Beginner</span>
@@ -646,16 +686,13 @@
       <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-left" data-aos-delay="150">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
-          <div style="position:relative;flex-shrink:0;width:110px;height:110px;">
-            <svg style="width:100%;height:100%;transform:rotate(-90deg);" viewBox="0 0 100 100" aria-hidden="true">
-              <circle class="radial-bg" cx="50" cy="50" r="42"/>
-              <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="35" stroke-dasharray="0 264"/>
-            </svg>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
-              <i class="fas fa-server grad-text" style="font-size:1.4rem;" aria-hidden="true"></i>
-              <span class="radial-pct grad-text" style="font-size:.78rem;font-weight:700;font-family:'Space Mono',monospace;">0%</span>
+          <div class="skill-icon-wrap">
+              <div class="skill-icon-glow" style="background:rgba(167,139,250,0.1);">
+                <i class="fas fa-server" style="color:#a78bfa;filter:drop-shadow(0 0 8px #a78bfa);" aria-hidden="true"></i>
+                <style>.skill-icon-glow::after{background:#a78bfa;}</style>
+              </div>
+              <div class="skill-tags"><span class="skill-tag" style="color:#3b82f6;background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.35);animation-delay:0.08s;">Python</span><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.3);animation-delay:0.15s;">REST</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.22s;">APIs</span><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.3);animation-delay:0.29s;">Flask</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);animation-delay:0.36s;">Logic</span></div>
             </div>
-          </div>
           <div style="flex:1;">
             <h3 style="font-size:1rem;font-weight:700;margin-bottom:.5rem;">Backend Development</h3>
             <span style="display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem;background:rgba(103,232,249,0.12);color:#67e8f9;border:1px solid rgba(103,232,249,0.25);">Beginner</span>
@@ -667,16 +704,13 @@
       <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-right" data-aos-delay="200">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
-          <div style="position:relative;flex-shrink:0;width:110px;height:110px;">
-            <svg style="width:100%;height:100%;transform:rotate(-90deg);" viewBox="0 0 100 100" aria-hidden="true">
-              <circle class="radial-bg" cx="50" cy="50" r="42"/>
-              <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="60" stroke-dasharray="0 264"/>
-            </svg>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
-              <i class="fas fa-paint-brush grad-text" style="font-size:1.4rem;" aria-hidden="true"></i>
-              <span class="radial-pct grad-text" style="font-size:.78rem;font-weight:700;font-family:'Space Mono',monospace;">0%</span>
+          <div class="skill-icon-wrap">
+              <div class="skill-icon-glow" style="background:rgba(244,114,182,0.1);">
+                <i class="fas fa-paint-brush" style="color:#f472b6;filter:drop-shadow(0 0 8px #f472b6);" aria-hidden="true"></i>
+                <style>.skill-icon-glow::after{background:#f472b6;}</style>
+              </div>
+              <div class="skill-tags"><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.35);animation-delay:0.08s;">Figma</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.15s;">Glassmorphism</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.22s;">Wireframe</span><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.3);animation-delay:0.29s;">Design Systems</span></div>
             </div>
-          </div>
           <div style="flex:1;">
             <h3 style="font-size:1rem;font-weight:700;margin-bottom:.5rem;">UI/UX Design</h3>
             <span style="display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem;background:rgba(167,139,250,0.15);color:#a78bfa;border:1px solid rgba(167,139,250,0.3);">Intermediate</span>
@@ -688,16 +722,13 @@
       <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-left" data-aos-delay="250">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
-          <div style="position:relative;flex-shrink:0;width:110px;height:110px;">
-            <svg style="width:100%;height:100%;transform:rotate(-90deg);" viewBox="0 0 100 100" aria-hidden="true">
-              <circle class="radial-bg" cx="50" cy="50" r="42"/>
-              <circle class="radial-fill" cx="50" cy="50" r="42" data-pct="50" stroke-dasharray="0 264"/>
-            </svg>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
-              <i class="fas fa-database grad-text" style="font-size:1.4rem;" aria-hidden="true"></i>
-              <span class="radial-pct grad-text" style="font-size:.78rem;font-weight:700;font-family:'Space Mono',monospace;">0%</span>
+          <div class="skill-icon-wrap">
+              <div class="skill-icon-glow" style="background:rgba(74,222,128,0.1);">
+                <i class="fas fa-database" style="color:#4ade80;filter:drop-shadow(0 0 8px #4ade80);" aria-hidden="true"></i>
+                <style>.skill-icon-glow::after{background:#4ade80;}</style>
+              </div>
+              <div class="skill-tags"><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.35);animation-delay:0.08s;">MySQL</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.15s;">Queries</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);animation-delay:0.22s;">Joins</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.29s;">Schema</span><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.3);animation-delay:0.36s;">Indexes</span></div>
             </div>
-          </div>
           <div style="flex:1;">
             <h3 style="font-size:1rem;font-weight:700;margin-bottom:.5rem;">Database Management</h3>
             <span style="display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem;background:rgba(167,139,250,0.15);color:#a78bfa;border:1px solid rgba(167,139,250,0.3);">Intermediate</span>
@@ -1440,24 +1471,7 @@ window._reanimateCommitStat = function(val) {
   if (statsVisible) animateStat(el);
 };
 
-// ─── Radial skill rings ───────────────────────────
-const radialObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    document.querySelectorAll('.radial-fill').forEach(circle => {
-      const pct = parseFloat(circle.dataset.pct);
-      const circ = 2 * Math.PI * 42;
-      circle.style.strokeDasharray = (pct / 100 * circ) + ' ' + circ;
-      const pctEl = circle.closest('div').parentElement.querySelector('.radial-pct');
-      if (!pctEl) return;
-      let cur = 0; const step = pct / 60;
-      const t = setInterval(() => { cur = Math.min(cur + step, pct); pctEl.textContent = Math.round(cur) + '%'; if (cur >= pct) clearInterval(t); }, 20);
-    });
-    radialObs.disconnect();
-  });
-}, { threshold: 0.3 });
-const skillsSection = document.getElementById('skills');
-if (skillsSection) radialObs.observe(skillsSection);
+// Radial rings removed — replaced with tag clouds
 
 // ─── PHT Clock ────────────────────────────────────
 function updateClock() {
@@ -1867,14 +1881,7 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
         // Slight delay then reveal
         requestAnimationFrame(() => {
           section.classList.add('revealed');
-          // Re-trigger skill radial rings if applicable
-          if (id === 'skills') {
-            document.querySelectorAll('.radial-fill').forEach(circle => {
-              const pct = parseFloat(circle.dataset.pct);
-              const circ = 2 * Math.PI * 42;
-              circle.style.strokeDasharray = (pct / 100 * circ) + ' ' + circ;
-            });
-          }
+
         });
       }, 520);
 
