@@ -13,7 +13,6 @@
 </head>
 <body>
 
-    <!-- ── Preloader ───────────────────────────── -->
     <div id="preloader">
         <div class="preloader-inner">
             <div class="preloader-logo">Seijicxz</div>
@@ -22,39 +21,44 @@
         </div>
     </div>
 
-    <!-- ── Toast Notification ──────────────────── -->
+    <div id="cmd-overlay" class="cmd-overlay" aria-hidden="true">
+        <div class="cmd-palette glass-card" role="dialog" aria-label="Command palette">
+            <div class="cmd-search-row">
+                <i class="fas fa-search cmd-icon"></i>
+                <input id="cmd-input" type="text" class="cmd-input" placeholder="Jump to section, or type a command…" autocomplete="off">
+                <kbd class="cmd-esc">ESC</kbd>
+            </div>
+            <ul class="cmd-list" id="cmd-list"></ul>
+            <div class="cmd-footer">
+                <span><kbd>↑↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> select</span>
+                <span><kbd>ESC</kbd> close</span>
+                <span><kbd>Ctrl K</kbd> toggle</span>
+            </div>
+        </div>
+    </div>
+
     <div id="toast" class="toast-notif"><i class="fas fa-check-circle me-2"></i>Email copied!</div>
-
-    <!-- ── Back to Top ─────────────────────────── -->
-    <button id="back-to-top" title="Back to top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- ── Scroll Progress ─────────────────────── -->
+    <button id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <div id="ph-clock" class="ph-clock-widget" title="Philippine Time">
+        <i class="fas fa-globe"></i>
+        <span id="ph-time" class="ph-time">--:--</span>
+        <span class="ph-label">PHT</span>
+    </div>
     <div id="scroll-progress"></div>
-
-    <!-- ── Custom Cursor ───────────────────────── -->
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
     <canvas id="cursor-trail"></canvas>
-
-    <!-- ── Particles ───────────────────────────── -->
     <canvas id="particles-canvas"></canvas>
-
-    <!-- ── Background Orbs ─────────────────────── -->
-    <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-    </div>
-
-    <!-- ── Navbar ──────────────────────────────── -->
+    <canvas id="aurora-canvas"></canvas>
     <header>
-        <nav class="navbar navbar-expand-lg glass-nav">
+        <nav class="navbar navbar-expand-lg glass-nav" id="main-nav">
             <div class="container-fluid px-4">
                 <a class="navbar-brand brand-logo" href="#">Seijicxz</a>
                 <div class="d-flex align-items-center gap-3">
+                    <button class="cmd-trigger btn-ghost" id="cmd-trigger" title="Command palette (Ctrl+K)" aria-label="Open command palette">
+                        <i class="fas fa-search"></i><span class="cmd-hint ms-2 d-none d-md-inline">Ctrl+K</span>
+                    </button>
                     <button id="theme-toggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
                         <span class="toggle-track">
                             <span class="toggle-thumb">
@@ -72,6 +76,7 @@
                         <li class="nav-item"><a class="nav-link nav-pill" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link nav-pill" href="#stats">Stats</a></li>
                         <li class="nav-item"><a class="nav-link nav-pill" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link nav-pill" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link nav-pill" href="#projects">Projects</a></li>
                         <li class="nav-item"><a class="nav-link nav-pill" href="#education">Education</a></li>
                         <li class="nav-item"><a class="nav-link nav-pill" href="#contact">Contact</a></li>
@@ -81,19 +86,30 @@
         </nav>
     </header>
 
-    <!-- ── About ───────────────────────────────── -->
     <section id="about" class="py-5">
         <div class="container">
-            <div class="glass-card hero-card tilt-card" data-aos="fade-up">
+            <div class="glass-card hero-card tilt-card shine-card" data-aos="fade-up">
+                <div class="shine-effect"></div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <span class="greeting-badge">👋 Welcome</span>
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <span class="greeting-badge"><i class="fas fa-wave-hand"></i> Welcome</span>
+                            <span class="avail-badge"><span class="avail-dot"></span>Open to opportunities</span>
+                        </div>
                         <h2 class="hero-title mt-3 mb-2">Hello World!</h2>
                         <h4 class="hero-subtitle mb-1">I'm <span class="highlight">CJ Steeve Cadenas</span></h4>
                         <h4 class="hero-subtitle mb-3">
                             <span class="typing-prefix">Aspiring </span><span id="typed-role" class="typed-role"></span><span class="typed-cursor">|</span>
                         </h4>
                         <p class="hero-desc">Welcome to my portfolio! I am an aspiring web developer who is passionate about creating beautiful and functional websites.</p>
+                        <div class="hobbies-row mt-3">
+                            <span class="hobby-chip"><i class="fas fa-gamepad"></i> Gaming</span>
+                            <span class="hobby-chip"><i class="fas fa-music"></i> Music</span>
+                            <span class="hobby-chip"><i class="fas fa-book"></i> Reading</span>
+                            <span class="hobby-chip"><i class="fas fa-mug-hot"></i> Coffee</span>
+                            <span class="hobby-chip"><i class="fas fa-palette"></i> Design</span>
+                            <span class="hobby-chip"><i class="fas fa-globe"></i> Travel</span>
+                        </div>
                         <div class="hero-cta mt-4 d-flex flex-wrap gap-2">
                             <a href="#contact" class="btn-glass-primary">Get In Touch</a>
                             <a href="#" class="btn-glass-secondary" download>
@@ -113,7 +129,6 @@
         </div>
     </section>
 
-    <!-- ── Stats Counter ───────────────────────── -->
     <section id="stats" class="py-4">
         <div class="container">
             <div class="glass-card stats-card" data-aos="fade-up">
@@ -132,65 +147,53 @@
                     </div>
                     <div class="col-6 col-md-3 stat-item">
                         <div class="stat-number" data-target="999" data-suffix="+">0</div>
-                        <div class="stat-label">Cups of Coffee ☕</div>
+                        <div class="stat-label"><i class="fas fa-mug-hot"></i> Cups of Coffee</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── Skills ──────────────────────────────── -->
     <section id="skills" class="py-5">
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Expertise</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Skills</h2>
             <div class="row g-4 mb-4">
                 <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
-                    <div class="glass-card skill-card tilt-card">
+                    <div class="glass-card skill-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
                         <h3 class="skill-title">Frontend Development</h3>
-                        <div class="skill-bar-wrapper">
-                            <div class="skill-bar-track">
-                                <div class="skill-bar-fill" style="--target-width: 40%"></div>
-                            </div>
-                        </div>
+                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:40%"></div></div></div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left" data-aos-delay="150">
-                    <div class="glass-card skill-card tilt-card">
+                    <div class="glass-card skill-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="skill-icon"><i class="fas fa-server"></i></div>
                         <h3 class="skill-title">Backend Development</h3>
-                        <div class="skill-bar-wrapper">
-                            <div class="skill-bar-track">
-                                <div class="skill-bar-fill" style="--target-width: 40%"></div>
-                            </div>
-                        </div>
+                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:40%"></div></div></div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
-                    <div class="glass-card skill-card tilt-card">
+                    <div class="glass-card skill-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
                         <h3 class="skill-title">UI/UX Design</h3>
-                        <div class="skill-bar-wrapper">
-                            <div class="skill-bar-track">
-                                <div class="skill-bar-fill" style="--target-width: 60%"></div>
-                            </div>
-                        </div>
+                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:60%"></div></div></div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left" data-aos-delay="250">
-                    <div class="glass-card skill-card tilt-card">
+                    <div class="glass-card skill-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="skill-icon"><i class="fas fa-database"></i></div>
                         <h3 class="skill-title">Database Management</h3>
-                        <div class="skill-bar-wrapper">
-                            <div class="skill-bar-track">
-                                <div class="skill-bar-fill" style="--target-width: 50%"></div>
-                            </div>
-                        </div>
+                        <div class="skill-bar-wrapper"><div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:50%"></div></div></div>
                     </div>
                 </div>
             </div>
-            <div class="glass-card tools-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="glass-card tools-card shine-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="shine-effect"></div>
                 <div class="tools-header">
                     <i class="fas fa-code tools-header-icon"></i>
                     <h3 class="tools-title">Languages &amp; Tools</h3>
@@ -198,7 +201,7 @@
                 <div class="tools-badges">
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="tool-icon"> HTML</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="tool-icon"> CSS</span>
-                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tool-icon"> JavaScript</span>
+                    <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS" class="tool-icon"> JavaScript</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tool-icon"> Python</span>
                     <span class="tool-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tool-icon"> MySQL</span>
                 </div>
@@ -206,25 +209,75 @@
         </div>
     </section>
 
-    <!-- ── Projects ────────────────────────────── -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="section-label" data-aos="fade-down"><span>What I Do</span></div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card service-card tilt-card shine-card text-center">
+                        <div class="shine-effect"></div>
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-code service-icon"></i>
+                        </div>
+                        <h4 class="service-title">Web Development</h4>
+                        <p class="service-desc">Building responsive, fast, and modern websites using HTML, CSS, JavaScript, and Python — from landing pages to full web apps.</p>
+                        <div class="service-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card service-card tilt-card shine-card text-center">
+                        <div class="shine-effect"></div>
+                        <div class="service-icon-wrap service-icon-wrap-2">
+                            <i class="fas fa-palette service-icon"></i>
+                        </div>
+                        <h4 class="service-title">UI/UX Design</h4>
+                        <p class="service-desc">Designing clean, intuitive interfaces with a focus on user experience, visual hierarchy, and modern aesthetics like glassmorphism.</p>
+                        <div class="service-tags">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card service-card tilt-card shine-card text-center">
+                        <div class="shine-effect"></div>
+                        <div class="service-icon-wrap service-icon-wrap-3">
+                            <i class="fas fa-database service-icon"></i>
+                        </div>
+                        <h4 class="service-title">Database Management</h4>
+                        <p class="service-desc">Designing and managing relational databases with MySQL — from schema design to queries, optimization, and data integrity.</p>
+                        <div class="service-tags">
+                            <span class="project-tag">MySQL</span>
+                            <span class="project-tag">SQL</span>
+                            <span class="project-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects" class="py-5">
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Work</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Projects</h2>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-card project-card tilt-card">
-                        <div class="project-preview" style="background: linear-gradient(135deg, #7c3aed22, #0891b222);">
+                    <div class="glass-card project-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
+                        <div class="project-preview" style="background:linear-gradient(135deg,#7c3aed22,#0891b222)">
                             <i class="fas fa-globe project-preview-icon"></i>
                         </div>
                         <div class="project-body">
                             <h4 class="project-title">Portfolio Website</h4>
                             <p class="project-desc">A personal portfolio built with HTML, CSS, and JavaScript featuring glassmorphism design.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">HTML</span>
-                                <span class="project-tag">CSS</span>
-                                <span class="project-tag">JS</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JS</span></div>
                             <div class="project-links mt-3">
                                 <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
                                 <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
@@ -233,18 +286,15 @@
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-card project-card tilt-card">
-                        <div class="project-preview" style="background: linear-gradient(135deg, #be185d22, #7c3aed22);">
+                    <div class="glass-card project-card tilt-card shine-card">
+                        <div class="shine-effect"></div>
+                        <div class="project-preview" style="background:linear-gradient(135deg,#be185d22,#7c3aed22)">
                             <i class="fas fa-code project-preview-icon"></i>
                         </div>
                         <div class="project-body">
                             <h4 class="project-title">Web App Project</h4>
                             <p class="project-desc">A full-stack web application with Python backend and MySQL database integration.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Python</span>
-                                <span class="project-tag">MySQL</span>
-                                <span class="project-tag">CSS</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">MySQL</span><span class="project-tag">CSS</span></div>
                             <div class="project-links mt-3">
                                 <a href="https://github.com/seijicxz111" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
                                 <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
@@ -253,7 +303,8 @@
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="glass-card project-card project-add tilt-card">
+                    <div class="glass-card project-card project-add tilt-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="project-add-inner">
                             <div class="project-add-icon"><i class="fas fa-plus"></i></div>
                             <p class="project-add-text">More coming soon</p>
@@ -264,18 +315,17 @@
         </div>
     </section>
 
-    <!-- ── Education / Certifications ──────────── -->
     <section id="education" class="py-5">
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Background</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Education &amp; Certifications</h2>
             <div class="timeline">
-
                 <div class="timeline-item" data-aos="fade-right">
                     <div class="timeline-dot"></div>
-                    <div class="glass-card timeline-card">
+                    <div class="glass-card timeline-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="timeline-meta">
-                            <span class="timeline-badge edu">Education</span>
+                            <span class="timeline-badge edu"><i class="fas fa-graduation-cap"></i> Education</span>
                             <span class="timeline-year">2023 – Present</span>
                         </div>
                         <h4 class="timeline-title">Bachelor of Science in Information Technology</h4>
@@ -283,12 +333,12 @@
                         <p class="timeline-desc">Studying core computer science concepts, web development, database systems, and software engineering principles.</p>
                     </div>
                 </div>
-
-                <div class="timeline-item timeline-item-right" data-aos="fade-left">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
                     <div class="timeline-dot"></div>
-                    <div class="glass-card timeline-card">
+                    <div class="glass-card timeline-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="timeline-meta">
-                            <span class="timeline-badge cert">Certification</span>
+                            <span class="timeline-badge cert"><i class="fas fa-certificate"></i> Certification</span>
                             <span class="timeline-year">2024</span>
                         </div>
                         <h4 class="timeline-title">Responsive Web Design</h4>
@@ -296,12 +346,12 @@
                         <p class="timeline-desc">Completed 300+ hours covering HTML, CSS, Flexbox, Grid, and accessibility best practices.</p>
                     </div>
                 </div>
-
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
                     <div class="timeline-dot"></div>
-                    <div class="glass-card timeline-card">
+                    <div class="glass-card timeline-card shine-card">
+                        <div class="shine-effect"></div>
                         <div class="timeline-meta">
-                            <span class="timeline-badge cert">Certification</span>
+                            <span class="timeline-badge cert"><i class="fas fa-certificate"></i> Certification</span>
                             <span class="timeline-year">2024</span>
                         </div>
                         <h4 class="timeline-title">Python for Everybody</h4>
@@ -309,15 +359,14 @@
                         <p class="timeline-desc">Learned Python fundamentals including data structures, web scraping, databases, and data visualization.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ── GitHub Activity ──────────────────────── -->
     <section class="py-5">
         <div class="container">
-            <div class="glass-card" data-aos="fade-up">
+            <div class="glass-card shine-card" data-aos="fade-up">
+                <div class="shine-effect"></div>
                 <div class="contrib-header">
                     <i class="fab fa-github contrib-icon"></i>
                     <div>
@@ -336,31 +385,28 @@
         </div>
     </section>
 
-    <!-- ── Contact ──────────────────────────────── -->
     <section id="contact" class="py-5">
         <div class="container">
             <div class="section-label" data-aos="fade-down"><span>Get In Touch</span></div>
             <h2 class="section-title text-center mb-5" data-aos="fade-up">Contact Me</h2>
             <div class="row g-4">
-                <!-- Info side -->
                 <div class="col-lg-5" data-aos="fade-right">
-                    <div class="glass-card contact-info-card h-100">
-                        <h4 class="contact-info-title">Let's talk 👋</h4>
+                    <div class="glass-card contact-info-card shine-card h-100">
+                        <div class="shine-effect"></div>
+                        <h4 class="contact-info-title"><i class="fas fa-comment"></i> Let's talk</h4>
                         <p class="contact-info-desc">Have a project in mind or just want to say hi? Drop a message and I'll get back to you!</p>
                         <div class="contact-detail">
                             <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <div class="contact-detail-label">Email</div>
-                                <button id="copy-email-btn" class="contact-email-btn" title="Click to copy">
-                                    cjsteevecadenas0@gmail.com <i class="fas fa-copy ms-1"></i>
-                                </button>
+                                <button id="copy-email-btn" class="contact-email-btn" title="Click to copy">cjsteevecadenas0@gmail.com <i class="fas fa-copy ms-1"></i></button>
                             </div>
                         </div>
                         <div class="contact-detail mt-3">
                             <div class="contact-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
                                 <div class="contact-detail-label">Location</div>
-                                <div class="contact-detail-value">Philippines 🇵🇭</div>
+                                <div class="contact-detail-value"><i class="fas fa-map-pin"></i> Philippines</div>
                             </div>
                         </div>
                         <div class="social-row mt-4">
@@ -371,9 +417,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Form side -->
                 <div class="col-lg-7" data-aos="fade-left">
-                    <div class="glass-card contact-form-card h-100">
+                    <div class="glass-card contact-form-card shine-card h-100">
+                        <div class="shine-effect"></div>
                         <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
                             <div class="row g-3">
                                 <div class="col-sm-6">
@@ -406,223 +452,265 @@
     </section>
 
     <footer class="glass-footer py-4">
-        <div class="container text-center">
-            <p class="footer-text">&copy; 2024 Seijicxz. All rights reserved.</p>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <p class="footer-text mb-0">&copy; 2024 Seijicxz. All rights reserved.</p>
+                <p class="footer-text mb-0">Press <kbd class="footer-kbd">Ctrl K</kbd> to navigate</p>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-    // ── Preloader ──────────────────────────────────
     window.addEventListener('load', () => {
         const pre = document.getElementById('preloader');
+        setTimeout(() => { pre.classList.add('preloader-hide'); setTimeout(() => pre.remove(), 600); }, 1800);
         setTimeout(() => {
-            pre.classList.add('preloader-hide');
-            setTimeout(() => pre.remove(), 600);
-        }, 1800);
-
-        // Skill bars
-        setTimeout(() => {
-            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-                bar.style.width = getComputedStyle(bar).getPropertyValue('--target-width').trim();
+            document.querySelectorAll('.skill-bar-fill').forEach(b => {
+                b.style.width = getComputedStyle(b).getPropertyValue('--target-width').trim();
             });
         }, 2200);
     });
 
-    // ── AOS ────────────────────────────────────────
     AOS.init({ duration: 800, once: true });
-
-    // ── Scroll Progress ────────────────────────────
-    window.addEventListener('scroll', () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        document.getElementById('scroll-progress').style.width = (scrollTop / scrollHeight * 100) + '%';
-
-        // Back to top visibility
-        document.getElementById('back-to-top').classList.toggle('visible', scrollTop > 400);
-    });
-
-    // ── Back to Top ────────────────────────────────
-    document.getElementById('back-to-top').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ── Active Nav ─────────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-pill');
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-        navLinks.forEach(a => {
-            a.classList.remove('active');
-            if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-        });
-    });
-
-    // ── Typing Animation ───────────────────────────
-    const roles = ['Web Developer', 'UI Designer', 'Problem Solver', 'Python Enthusiast'];
-    let rIdx = 0, cIdx = 0, deleting = false;
-    const typedEl = document.getElementById('typed-role');
-    function type() {
-        const cur = roles[rIdx];
-        typedEl.textContent = deleting ? cur.substring(0, cIdx - 1) : cur.substring(0, cIdx + 1);
-        deleting ? cIdx-- : cIdx++;
-        if (!deleting && cIdx === cur.length) { deleting = true; setTimeout(type, 1800); return; }
-        if (deleting && cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
-        setTimeout(type, deleting ? 60 : 100);
-    }
-    type();
-
-    // ── Theme Toggle ───────────────────────────────
     const html = document.documentElement;
     html.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
     document.getElementById('theme-toggle').addEventListener('click', () => {
         const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
+        html.setAttribute('data-theme', next); localStorage.setItem('theme', next);
     });
-
-    // ── Custom Cursor ──────────────────────────────
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        const st = document.documentElement.scrollTop;
+        const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('scroll-progress').style.width = (st / sh * 100) + '%';
+        document.getElementById('back-to-top').classList.toggle('visible', st > 400);
+        // Navbar blur intensifies on scroll
+        const blur = Math.min(20 + st / 20, 40);
+        const alpha = Math.min(0.55 + st / 2000, 0.9);
+        nav.style.backdropFilter = `blur(${blur}px)`;
+        nav.style.background = html.getAttribute('data-theme') === 'dark'
+            ? `rgba(10,10,26,${alpha})` : `rgba(240,244,255,${alpha})`;
+    });
+    document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-pill');
+    window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+        navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+    });
+    const roles = ['Web Developer', 'UI Designer', 'Problem Solver', 'Python Enthusiast'];
+    let rIdx = 0, cIdx = 0, del = false;
+    const typedEl = document.getElementById('typed-role');
+    function type() {
+        const cur = roles[rIdx];
+        typedEl.textContent = del ? cur.substring(0, cIdx - 1) : cur.substring(0, cIdx + 1);
+        del ? cIdx-- : cIdx++;
+        if (!del && cIdx === cur.length) { del = true; setTimeout(type, 1800); return; }
+        if (del && cIdx === 0) { del = false; rIdx = (rIdx + 1) % roles.length; }
+        setTimeout(type, del ? 60 : 100);
+    }
+    type();
+    const dot = document.getElementById('cursor-dot'), ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    });
-    (function animateRing() {
-        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-        requestAnimationFrame(animateRing);
-    })();
-    document.querySelectorAll('a, button, .tool-badge, .project-card, .tilt-card').forEach(el => {
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+    (function ar() { rx += (mx-rx)*.12; ry += (my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(ar); })();
+    document.querySelectorAll('a,button,.tool-badge,.tilt-card').forEach(el => {
         el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
         el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
     });
-
-    // ── Glowing Cursor Trail ───────────────────────
-    const trailCanvas = document.getElementById('cursor-trail');
-    const tCtx = trailCanvas.getContext('2d');
-    trailCanvas.width = window.innerWidth;
-    trailCanvas.height = window.innerHeight;
-    window.addEventListener('resize', () => { trailCanvas.width = window.innerWidth; trailCanvas.height = window.innerHeight; });
+    const tc = document.getElementById('cursor-trail'), tCtx = tc.getContext('2d');
+    tc.width = innerWidth; tc.height = innerHeight;
+    window.addEventListener('resize', () => { tc.width = innerWidth; tc.height = innerHeight; });
     const trails = [];
     document.addEventListener('mousemove', e => {
-        for (let i = 0; i < 3; i++) {
-            trails.push({
-                x: e.clientX + (Math.random() - 0.5) * 8,
-                y: e.clientY + (Math.random() - 0.5) * 8,
-                r: Math.random() * 3 + 1,
-                alpha: Math.random() * 0.6 + 0.3,
-                life: 1
-            });
-        }
+        for (let i = 0; i < 3; i++) trails.push({ x: e.clientX+(Math.random()-.5)*8, y: e.clientY+(Math.random()-.5)*8, r: Math.random()*3+1, alpha: Math.random()*.6+.3, life: 1 });
     });
-    (function drawTrail() {
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-        const theme = html.getAttribute('data-theme');
-        const c1 = theme === 'light' ? '124, 58, 237' : '167, 139, 250';
-        const c2 = theme === 'light' ? '8, 145, 178' : '103, 232, 249';
-        for (let i = trails.length - 1; i >= 0; i--) {
-            const t = trails[i];
-            t.life -= 0.04; t.r *= 0.97;
-            if (t.life <= 0) { trails.splice(i, 1); continue; }
-            const grad = tCtx.createRadialGradient(t.x, t.y, 0, t.x, t.y, t.r * 3);
-            grad.addColorStop(0, `rgba(${c1}, ${t.alpha * t.life})`);
-            grad.addColorStop(1, `rgba(${c2}, 0)`);
-            tCtx.beginPath();
-            tCtx.arc(t.x, t.y, t.r * 3, 0, Math.PI * 2);
-            tCtx.fillStyle = grad;
-            tCtx.fill();
+    (function dt() {
+        tCtx.clearRect(0,0,tc.width,tc.height);
+        const c1 = html.getAttribute('data-theme')==='light'?'124,58,237':'167,139,250';
+        const c2 = html.getAttribute('data-theme')==='light'?'8,145,178':'103,232,249';
+        for (let i=trails.length-1;i>=0;i--) {
+            const t=trails[i]; t.life-=.04; t.r*=.97;
+            if (t.life<=0){trails.splice(i,1);continue;}
+            const g=tCtx.createRadialGradient(t.x,t.y,0,t.x,t.y,t.r*3);
+            g.addColorStop(0,`rgba(${c1},${t.alpha*t.life})`); g.addColorStop(1,`rgba(${c2},0)`);
+            tCtx.beginPath(); tCtx.arc(t.x,t.y,t.r*3,0,Math.PI*2); tCtx.fillStyle=g; tCtx.fill();
         }
-        requestAnimationFrame(drawTrail);
+        requestAnimationFrame(dt);
     })();
-
-    // ── Background Particles ───────────────────────
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-    for (let i = 0; i < 120; i++) particles.push({
-        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.3, vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3, alpha: Math.random() * 0.5 + 0.1
-    });
-    (function drawParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const col = html.getAttribute('data-theme') === 'light' ? '100,60,200' : '167,139,250';
-        particles.forEach(p => {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
-            if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${col},${p.alpha})`; ctx.fill();
+    const ac = document.getElementById('aurora-canvas'), aCtx = ac.getContext('2d');
+    ac.width = innerWidth; ac.height = innerHeight;
+    window.addEventListener('resize', () => { ac.width = innerWidth; ac.height = innerHeight; });
+    const aBlobs = [
+        { x: 0.2, y: 0.3, r: 0.38, hue: 260, speed: 0.0003 },
+        { x: 0.7, y: 0.6, r: 0.42, hue: 190, speed: 0.0004 },
+        { x: 0.5, y: 0.1, r: 0.35, hue: 320, speed: 0.00025 },
+        { x: 0.85, y: 0.2, r: 0.3,  hue: 210, speed: 0.00035 },
+    ];
+    let aT = 0;
+    (function drawAurora() {
+        aT += 1;
+        aCtx.clearRect(0, 0, ac.width, ac.height);
+        const isDark = html.getAttribute('data-theme') !== 'light';
+        aBlobs.forEach((b, i) => {
+            const nx = b.x + Math.sin(aT * b.speed * 1000 + i) * 0.12;
+            const ny = b.y + Math.cos(aT * b.speed * 800 + i * 1.3) * 0.1;
+            const cx = nx * ac.width, cy = ny * ac.height;
+            const rad = b.r * Math.max(ac.width, ac.height);
+            const grad = aCtx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+            const alpha = isDark ? 0.13 : 0.07;
+            grad.addColorStop(0, `hsla(${b.hue},80%,65%,${alpha})`);
+            grad.addColorStop(0.5, `hsla(${b.hue+30},70%,55%,${alpha * 0.5})`);
+            grad.addColorStop(1, `hsla(${b.hue+60},60%,45%,0)`);
+            aCtx.beginPath();
+            aCtx.arc(cx, cy, rad, 0, Math.PI * 2);
+            aCtx.fillStyle = grad;
+            aCtx.fill();
         });
-        for (let i = 0; i < particles.length; i++) for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-            const d = Math.sqrt(dx*dx+dy*dy);
-            if (d < 100) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(${col},${0.08*(1-d/100)})`; ctx.lineWidth=0.5; ctx.stroke(); }
-        }
-        requestAnimationFrame(drawParticles);
+        requestAnimationFrame(drawAurora);
     })();
-
-    // ── Tilt Effect on Cards ───────────────────────
+    const pc = document.getElementById('particles-canvas'), pCtx = pc.getContext('2d');
+    pc.width = innerWidth; pc.height = innerHeight;
+    window.addEventListener('resize', () => { pc.width = innerWidth; pc.height = innerHeight; });
+    const pts = Array.from({length:100}, () => ({ x:Math.random()*pc.width, y:Math.random()*pc.height, r:Math.random()*1.5+.3, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3, alpha:Math.random()*.5+.1 }));
+    (function dp() {
+        pCtx.clearRect(0,0,pc.width,pc.height);
+        const col = html.getAttribute('data-theme')==='light'?'100,60,200':'167,139,250';
+        pts.forEach(p => {
+            p.x+=p.vx; p.y+=p.vy;
+            if(p.x<0)p.x=pc.width; if(p.x>pc.width)p.x=0;
+            if(p.y<0)p.y=pc.height; if(p.y>pc.height)p.y=0;
+            pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r,0,Math.PI*2); pCtx.fillStyle=`rgba(${col},${p.alpha})`; pCtx.fill();
+        });
+        for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+            const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+            if(d<100){pCtx.beginPath();pCtx.moveTo(pts[i].x,pts[i].y);pCtx.lineTo(pts[j].x,pts[j].y);pCtx.strokeStyle=`rgba(${col},${.08*(1-d/100)})`;pCtx.lineWidth=.5;pCtx.stroke();}
+        }
+        requestAnimationFrame(dp);
+    })();
+    document.querySelectorAll('.shine-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width) * 100;
+            const y = ((e.clientY - r.top) / r.height) * 100;
+            card.querySelector('.shine-effect').style.background =
+                `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.12) 0%, transparent 60%)`;
+        });
+        card.addEventListener('mouseleave', e => {
+            card.querySelector('.shine-effect').style.background = 'none';
+        });
+    });
     document.querySelectorAll('.tilt-card').forEach(card => {
         card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
-            const dx = (e.clientX - cx) / (rect.width / 2);
-            const dy = (e.clientY - cy) / (rect.height / 2);
-            card.style.transform = `perspective(800px) rotateX(${-dy * 6}deg) rotateY(${dx * 6}deg) translateY(-4px)`;
+            const r = card.getBoundingClientRect();
+            const dx = (e.clientX - r.left - r.width/2) / (r.width/2);
+            const dy = (e.clientY - r.top - r.height/2) / (r.height/2);
+            card.style.transform = `perspective(800px) rotateX(${-dy*6}deg) rotateY(${dx*6}deg) translateY(-4px)`;
         });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
-
-    // ── Stats Counter ──────────────────────────────
-    const statsObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll('.stat-number').forEach(el => {
-                const target = +el.dataset.target;
-                const suffix = el.dataset.suffix || '';
-                let current = 0;
-                const step = Math.ceil(target / 60);
-                const timer = setInterval(() => {
-                    current = Math.min(current + step, target);
-                    el.textContent = current + (current === target ? suffix : '');
-                    if (current >= target) clearInterval(timer);
-                }, 25);
+    const so = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            e.target.querySelectorAll('.stat-number').forEach(el => {
+                const target = +el.dataset.target, suf = el.dataset.suffix||'';
+                let cur = 0; const step = Math.ceil(target/60);
+                const t = setInterval(() => { cur=Math.min(cur+step,target); el.textContent=cur+(cur===target?suf:''); if(cur>=target)clearInterval(t); },25);
             });
-            statsObserver.unobserve(entry.target);
+            so.unobserve(e.target);
         });
     }, { threshold: 0.5 });
-    statsObserver.observe(document.querySelector('.stats-card'));
+    const sc = document.querySelector('.stats-card');
+    if (sc) so.observe(sc);
+    function updateClock() {
+        const now = new Date();
+        const ph = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+        const h = ph.getHours(), m = ph.getMinutes(), s = ph.getSeconds();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const hh = h % 12 || 12;
+        document.getElementById('ph-time').textContent = `${hh}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} ${ampm}`;
+    }
+    updateClock(); setInterval(updateClock, 1000);
+    const commands = [
+        { label: 'About',        icon: 'fa-user',           href: '#about' },
+        { label: 'Stats',        icon: 'fa-chart-bar',      href: '#stats' },
+        { label: 'Skills',       icon: 'fa-code',           href: '#skills' },
+        { label: 'Services',     icon: 'fa-cog',            href: '#services' },
+        { label: 'Projects',     icon: 'fa-briefcase',      href: '#projects' },
+        { label: 'Education',    icon: 'fa-graduation-cap', href: '#education' },
+        { label: 'Contact',      icon: 'fa-envelope',       href: '#contact' },
+        { label: 'Toggle Theme', icon: 'fa-moon',           action: () => document.getElementById('theme-toggle').click() },
+        { label: 'Back to Top',  icon: 'fa-arrow-up',       action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
+        { label: 'Copy Email',   icon: 'fa-copy',           action: () => document.getElementById('copy-email-btn').click() },
+    ];
+    const overlay = document.getElementById('cmd-overlay');
+    const cmdInput = document.getElementById('cmd-input');
+    const cmdList = document.getElementById('cmd-list');
+    let activeIdx = 0;
 
-    // ── Copy Email Toast ───────────────────────────
+    function renderCmds(filter='') {
+        const filtered = commands.filter(c => c.label.toLowerCase().includes(filter.toLowerCase()));
+        activeIdx = 0;
+        cmdList.innerHTML = filtered.map((c, i) => `
+            <li class="cmd-item ${i===0?'cmd-active':''}" data-idx="${i}">
+                <i class="fas ${c.icon} cmd-item-icon"></i>
+                <span>${c.label}</span>
+                ${c.href ? `<kbd class="cmd-item-hint">↵</kbd>` : `<kbd class="cmd-item-hint">run</kbd>`}
+            </li>`).join('');
+        cmdList.querySelectorAll('.cmd-item').forEach((el, i) => {
+            el.addEventListener('click', () => execCmd(filtered[i]));
+            el.addEventListener('mouseenter', () => { activeIdx = i; highlightCmd(); });
+        });
+        return filtered;
+    }
+
+    function highlightCmd() {
+        cmdList.querySelectorAll('.cmd-item').forEach((el, i) => el.classList.toggle('cmd-active', i === activeIdx));
+        const active = cmdList.querySelector('.cmd-active');
+        if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function execCmd(cmd) {
+        closeCmd();
+        if (cmd.href) { setTimeout(() => { const el = document.querySelector(cmd.href); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100); }
+        else if (cmd.action) setTimeout(cmd.action, 100);
+    }
+
+    function openCmd() { overlay.classList.add('cmd-open'); cmdInput.value=''; renderCmds(); cmdInput.focus(); }
+    function closeCmd() { overlay.classList.remove('cmd-open'); }
+
+    document.getElementById('cmd-trigger').addEventListener('click', openCmd);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeCmd(); });
+
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); overlay.classList.contains('cmd-open') ? closeCmd() : openCmd(); }
+        if (!overlay.classList.contains('cmd-open')) return;
+        if (e.key === 'Escape') closeCmd();
+        const items = cmdList.querySelectorAll('.cmd-item');
+        if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx+1, items.length-1); highlightCmd(); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx-1, 0); highlightCmd(); }
+        if (e.key === 'Enter') { const filtered = renderCmds(cmdInput.value); if (filtered[activeIdx]) execCmd(filtered[activeIdx]); }
+    });
+
+    cmdInput.addEventListener('input', () => { renderCmds(cmdInput.value); });
     const toast = document.getElementById('toast');
-    function showToast() {
-        navigator.clipboard.writeText('cjsteevecadenas0@gmail.com').catch(() => {});
+    document.getElementById('copy-email-btn').addEventListener('click', () => {
+        navigator.clipboard.writeText('cjsteevecadenas0@gmail.com').catch(()=>{});
         toast.classList.add('toast-show');
         setTimeout(() => toast.classList.remove('toast-show'), 2500);
-    }
-    document.getElementById('copy-email-btn').addEventListener('click', showToast);
-
-    // ── Contact Form ───────────────────────────────
+    });
     document.getElementById('contact-form').addEventListener('submit', async e => {
         e.preventDefault();
         const btn = document.getElementById('send-btn');
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending…';
-        btn.disabled = true;
-        // Replace with your real Formspree endpoint; for now just simulate
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending…'; btn.disabled = true;
         await new Promise(r => setTimeout(r, 1500));
         btn.innerHTML = '<i class="fas fa-check me-2"></i>Sent!';
         setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message'; btn.disabled = false; e.target.reset(); }, 3000);
     });
-
-    // ── GitHub Contributions ───────────────────────
-    (async function fetchGitHubData() {
+    (async function() {
         try {
             const res = await fetch('/api/github-stats');
             if (!res.ok) return;
