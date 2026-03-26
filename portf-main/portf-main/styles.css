@@ -5,8 +5,8 @@
     --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
     --glass-blur: blur(16px);
     --accent-1: #a78bfa; --accent-2: #67e8f9; --accent-3: #f0abfc;
-    --text-primary: #f1f5f9; --text-secondary: rgba(241,245,249,0.65); --text-muted: rgba(241,245,249,0.4);
-    --bg-base: #0a0a1a; --nav-bg: rgba(10,10,26,0.55); --footer-bg: rgba(10,10,26,0.6);
+    --text-primary: #fdf0ff; --text-secondary: rgba(253,220,255,0.7); --text-muted: rgba(230,190,255,0.45);
+    --bg-base: #07000d; --nav-bg: rgba(7,0,13,0.65); --footer-bg: rgba(7,0,13,0.7);
     --font-main:'Sora',sans-serif; --font-mono:'Space Mono',monospace;
 }
 [data-theme="light"] {
@@ -63,7 +63,7 @@
 .ph-clock-widget {
     position:fixed;bottom:90px;right:20px;z-index:900;
     display:flex;align-items:center;gap:6px;
-    background:rgba(10,10,26,0.75);backdrop-filter:blur(16px);
+    background:rgba(7,0,13,0.75);backdrop-filter:blur(16px);
     border:1px solid var(--glass-border);border-radius:50px;
     padding:7px 14px;font-size:.78rem;font-weight:600;
     color:var(--text-secondary);box-shadow:0 4px 20px rgba(0,0,0,0.3);
@@ -112,7 +112,7 @@ header { position:sticky;top:0;z-index:100; }
 .nav-pill:hover,.nav-pill.active { color:var(--text-primary)!important;background:var(--glass-bg);border-color:var(--glass-border); }
 .navbar-toggler{border:none;} .navbar-toggler:focus{box-shadow:none;}
 .navbar-toggler-icon{filter:invert(1);}
-@media(max-width:991px){.navbar-collapse{background:rgba(10,10,26,0.9);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:12px;padding:12px;margin-top:10px;}}
+@media(max-width:991px){.navbar-collapse{background:rgba(7,0,13,0.92);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:12px;padding:12px;margin-top:10px;}}
 
 /* ─── Theme Toggle ────────────────────────────── */
 .theme-toggle{background:none;border:none;padding:0;cursor:none;}
@@ -130,8 +130,8 @@ header { position:sticky;top:0;z-index:100; }
 
 /* ─── Availability Badge ──────────────────────── */
 .avail-badge { display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;letter-spacing:.5px;color:#4ade80;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);padding:5px 12px;border-radius:50px; }
-.avail-dot { width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:avail-pulse 2s ease-in-out infinite; }
-@keyframes avail-pulse { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6} }
+.avail-dot { width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:avail-pulse 2s ease-in-out infinite;will-change:transform; }
+@keyframes avail-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.4)} }
 
 /* ─── Hobbies / Fun Facts ─────────────────────── */
 .hobbies-row { display:flex;flex-wrap:wrap;gap:8px; }

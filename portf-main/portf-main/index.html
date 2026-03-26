@@ -6,6 +6,8 @@
   <title>Seijicxz — Portfolio</title>
   <meta name="description" content="CJ Steeve Cadenas — Aspiring Web Developer & UI Designer from the Philippines.">
   <link rel="icon" href="logo.png" type="image/x-icon">
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="https://64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +20,7 @@
             accent1: '#a78bfa',
             accent2: '#67e8f9',
             accent3: '#f0abfc',
-            'bg-base': '#0a0a1a',
+            'bg-base': '#07000d',
           },
           fontFamily: {
             main: ['Sora', 'sans-serif'],
@@ -57,22 +59,31 @@
     }
   </script>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Fonts (preconnect + async load with display=swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- FontAwesome — async, non-blocking -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+  <!-- AOS CSS — async -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+
+  <!-- Three.js — deferred, never blocks first paint -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     /* ── CSS Variables ── */
     :root {
       --accent-1: #a78bfa; --accent-2: #67e8f9; --accent-3: #f0abfc;
       --text-primary: #f1f5f9; --text-secondary: rgba(241,245,249,0.65); --text-muted: rgba(241,245,249,0.4);
-      --bg-base: #0a0a1a; --glass-bg: rgba(255,255,255,0.08); --glass-border: rgba(255,255,255,0.18);
+      --bg-base: #07000d; --glass-bg: rgba(255,255,255,0.08); --glass-border: rgba(255,255,255,0.18);
       --glass-shadow: 0 8px 32px rgba(0,0,0,0.3); --glass-blur: blur(16px);
-      --nav-bg: rgba(10,10,26,0.55);
+      --nav-bg: rgba(7,0,13,0.65);
     }
     [data-theme="light"] {
       --accent-1:#7c3aed; --accent-2:#0891b2; --accent-3:#be185d;
@@ -129,8 +140,12 @@
     #back-to-top:hover { box-shadow:0 8px 30px rgba(167,139,250,0.6); transform:translateY(-3px); }
 
     /* ── PHT Clock ── */
-    #ph-clock { position:fixed; bottom:90px; right:20px; z-index:900; display:flex; align-items:center; gap:6px; background:rgba(10,10,26,0.75); backdrop-filter:blur(16px); border:1px solid var(--glass-border); border-radius:50px; padding:7px 14px; font-size:.78rem; font-weight:600; color:var(--text-secondary); box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:all .3s; }
+    #ph-clock { position:fixed; bottom:90px; right:20px; z-index:900; display:flex; align-items:center; gap:6px; background:rgba(7,0,13,0.82); backdrop-filter:blur(16px); border:1px solid var(--glass-border); border-radius:50px; padding:7px 14px; font-size:.78rem; font-weight:600; color:var(--text-secondary); box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:all .3s; }
     [data-theme="light"] #ph-clock { background:rgba(255,255,255,0.7); color:var(--text-primary); }
+    @media(max-width:600px) {
+      #ph-clock { bottom:70px; right:10px; padding:5px 10px; font-size:.68rem; gap:4px; }
+      #ph-clock .ph-label { display:none; }
+    }
 
     /* ── Toast ── */
     #toast { position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(80px); background:rgba(30,20,60,0.9); backdrop-filter:blur(16px); border:1px solid rgba(167,139,250,0.3); color:var(--text-primary); font-size:.88rem; font-weight:600; padding:12px 24px; border-radius:50px; box-shadow:0 8px 32px rgba(167,139,250,0.25); z-index:9999; opacity:0; transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s; pointer-events:none; white-space:nowrap; }
@@ -140,7 +155,7 @@
     nav.glass-nav { background:var(--nav-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--glass-border); transition:background .15s; }
     .nav-pill { font-size:.82rem; font-weight:600; letter-spacing:.5px; color:var(--text-secondary) !important; padding:7px 16px !important; border-radius:50px; border:1px solid transparent; transition:all .25s; text-decoration:none; }
     .nav-pill:hover, .nav-pill.active { color:var(--text-primary) !important; background:var(--glass-bg); border-color:var(--glass-border); }
-    .mobile-menu { background:rgba(10,10,26,0.9); backdrop-filter:blur(20px); border:1px solid var(--glass-border); border-radius:12px; }
+    .mobile-menu { background:rgba(7,0,13,0.93); backdrop-filter:blur(20px); border:1px solid var(--glass-border); border-radius:12px; }
     [data-theme="light"] .mobile-menu { background:rgba(240,244,255,0.95); }
 
     /* ── Toggle ── */
@@ -161,8 +176,8 @@
     @keyframes ring-pulse { 0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:.2;transform:translate(-50%,-50%) scale(1.04)} }
 
     /* ── Avail badge ── */
-    .avail-dot { width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px #4ade80; animation:avail-pulse 2s ease-in-out infinite; }
-    @keyframes avail-pulse { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6} }
+    .avail-dot { width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px #4ade80; animation:avail-pulse 2s ease-in-out infinite; will-change:transform; }
+    @keyframes avail-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.4)} }
 
     /* ── Radial skill rings ── */
 
@@ -213,22 +228,10 @@
     .social-glass:hover { background:rgba(167,139,250,0.15); border-color:rgba(167,139,250,0.4); color:var(--accent-1); transform:translateY(-4px); box-shadow:0 8px 24px rgba(167,139,250,0.3); }
 
     /* ── Footer ── */
-    .glass-footer { background:rgba(10,10,26,0.6); backdrop-filter:blur(16px); border-top:1px solid var(--glass-border); }
+    .glass-footer { background:rgba(7,0,13,0.65); backdrop-filter:blur(16px); border-top:1px solid var(--glass-border); }
     [data-theme="light"] .glass-footer { background:rgba(240,244,255,0.75); }
 
-    /* ── Spotify widget ── */
-    #spotify-widget { position:fixed; bottom:90px; left:20px; z-index:900; }
-    .spotify-card { background:rgba(10,10,26,0.85); backdrop-filter:blur(16px); border:1px solid rgba(30,215,96,0.3); border-radius:16px; padding:12px 16px; display:flex; align-items:center; gap:10px; min-width:220px; max-width:260px; box-shadow:0 4px 20px rgba(30,215,96,0.2); transition:all .3s; }
-    .spotify-card:hover { border-color:rgba(30,215,96,0.5); transform:translateY(-2px); }
-    [data-theme="light"] .spotify-card { background:rgba(255,255,255,0.85); }
-    .spotify-album { width:40px; height:40px; border-radius:8px; object-fit:cover; flex-shrink:0; }
-    .spotify-album-placeholder { width:40px; height:40px; border-radius:8px; background:linear-gradient(135deg,#1ed760,#0f9f42); display:flex; align-items:center; justify-content:center; font-size:.9rem; color:white; flex-shrink:0; }
-    .spotify-bars { display:flex; align-items:flex-end; gap:2px; height:14px; flex-shrink:0; }
-    .spotify-bar { width:3px; background:#1ed760; border-radius:2px; animation:spotify-bounce 1s ease-in-out infinite; }
-    .spotify-bar:nth-child(2) { animation-delay:.2s; }
-    .spotify-bar:nth-child(3) { animation-delay:.4s; }
-    @keyframes spotify-bounce { 0%,100%{height:4px}50%{height:14px} }
-    .spotify-not-playing .spotify-bar { animation:none; height:4px; }
+    
 
     /* ── Sections base z ── */
     section { position:relative; z-index:1; }
@@ -244,7 +247,7 @@
     /* ── Responsive nav mobile ── */
     @media(max-width:991px) {
       #nav-links { display:none; }
-      #nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; right:16px; background:rgba(10,10,26,0.95); backdrop-filter:blur(20px); border:1px solid var(--glass-border); border-radius:16px; padding:12px; z-index:200; }
+      #nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; right:16px; background:rgba(7,0,13,0.97); backdrop-filter:blur(20px); border:1px solid var(--glass-border); border-radius:16px; padding:12px; z-index:200; }
       [data-theme="light"] #nav-links.open { background:rgba(240,244,255,0.97); }
     }
     @media(min-width:992px) { #nav-toggle { display:none; } #nav-links { display:flex; } }
@@ -298,21 +301,6 @@
     .lazy-section.revealed { opacity:1; }
 
     /* ── Visitor Counter ── */
-    #visitor-bar {
-      position:fixed; bottom:0; left:0; right:0; z-index:800;
-      background:rgba(10,10,26,0.82); backdrop-filter:blur(18px);
-      border-top:1px solid var(--glass-border);
-      display:flex; align-items:center; justify-content:center; gap:32px;
-      padding:9px 20px; font-size:.78rem;
-    }
-    [data-theme="light"] #visitor-bar { background:rgba(240,244,255,0.88); }
-    .vbar-item { display:flex; align-items:center; gap:8px; color:var(--text-secondary); }
-    .vbar-dot  { width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px #4ade80; animation:avail-pulse 2s ease-in-out infinite; flex-shrink:0; }
-    .vbar-dot.orange { background:#fb923c; box-shadow:0 0 8px #fb923c; }
-    .vbar-num  { font-family:'Space Mono',monospace; font-weight:700; color:var(--accent-2); font-size:.82rem; }
-    .vbar-label { font-size:.72rem; color:var(--text-muted); }
-    .vbar-sep   { width:1px; height:18px; background:var(--glass-border); }
-
     /* ── Mind Map ── */
     #mindmap-section { padding:3rem 0; }
     #mindmap-canvas-wrap {
@@ -354,16 +342,7 @@
       position: relative;
       transition: transform .35s cubic-bezier(.34,1.56,.64,1);
     }
-    .skill-icon-glow::after {
-      content: '';
-      position: absolute; inset: -4px;
-      border-radius: 22px;
-      opacity: 0;
-      transition: opacity .4s;
-      filter: blur(12px);
-    }
     .glass-card:hover .skill-icon-glow { transform: scale(1.12) translateY(-2px); }
-    .glass-card:hover .skill-icon-glow::after { opacity: 1; }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
     .skill-tag {
       font-size: .6rem; font-weight: 700;
@@ -430,25 +409,10 @@
 <div id="ph-clock" title="Philippine Time">
   <i class="fas fa-globe" style="color:var(--accent-2)"></i>
   <span id="ph-time" style="font-family:'Space Mono',monospace;color:var(--accent-2);font-size:.8rem;">--:--</span>
-  <span style="font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">PHT</span>
+  <span class="ph-label" style="font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">PHT</span>
 </div>
 
-<!-- Spotify Widget -->
-<div id="spotify-widget">
-  <div class="spotify-card" id="spotify-card">
-    <div class="spotify-album-placeholder"><i class="fab fa-spotify"></i></div>
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1ed760;margin-bottom:2px;">Now Playing</div>
-      <div id="spotify-track" style="font-size:.78rem;font-weight:600;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Not playing</div>
-      <div id="spotify-artist" style="font-size:.72rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Spotify</div>
-    </div>
-    <div class="spotify-bars spotify-not-playing" id="spotify-bars">
-      <div class="spotify-bar"></div>
-      <div class="spotify-bar"></div>
-      <div class="spotify-bar"></div>
-    </div>
-  </div>
-</div>
+
 
 <!-- Back to top -->
 <button id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
@@ -575,13 +539,17 @@
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;">
             <a href="#contact" class="btn-primary">Get In Touch</a>
-            <a href="#" class="btn-secondary" download aria-label="Download Resume"><i class="fas fa-download" style="margin-right:8px;" aria-hidden="true"></i>Resume</a>
+            <a href="#" class="btn-secondary" download aria-label="Download Resume" style="background:linear-gradient(135deg,rgba(167,139,250,0.15),rgba(103,232,249,0.15));border-color:rgba(167,139,250,0.45);position:relative;overflow:hidden;">
+              <i class="fas fa-file-arrow-down" style="margin-right:8px;" aria-hidden="true"></i>Download CV
+              <span style="position:absolute;top:4px;right:8px;width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;animation:avail-pulse 2s ease-in-out infinite;"></span>
+            </a>
           </div>
         </div>
         <div style="text-align:center;margin-top:0;">
           <div style="position:relative;display:inline-block;">
             <img src="https://64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png"
                  alt="Profile photo of CJ Steeve Cadenas"
+                 width="260" height="260" loading="eager" decoding="async"
                  style="width:260px;height:260px;object-fit:cover;border-radius:50%;border:3px solid var(--glass-border);position:relative;z-index:2;box-shadow:0 0 40px rgba(167,139,250,0.3);">
             <div class="img-ring" aria-hidden="true"></div>
             <div class="img-ring-2" aria-hidden="true"></div>
@@ -665,13 +633,13 @@
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;" class="skills-grid">
       <!-- Skill Card 1 -->
-      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-right" data-aos-delay="100">
+      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;--skill-color:#67e8f9;" data-skill-color data-aos="fade-right" data-aos-delay="100">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
           <div class="skill-icon-wrap">
               <div class="skill-icon-glow" style="background:rgba(103,232,249,0.1);">
                 <i class="fas fa-laptop-code" style="color:#67e8f9;filter:drop-shadow(0 0 8px #67e8f9);" aria-hidden="true"></i>
-                <style>.skill-icon-glow::after{background:#67e8f9;}</style>
+                
               </div>
               <div class="skill-tags"><span class="skill-tag" style="color:#f97316;background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.35);animation-delay:0.08s;">HTML</span><span class="skill-tag" style="color:#38bdf8;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.35);animation-delay:0.15s;">CSS</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35);animation-delay:0.22s;">JS</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.29s;">DOM</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.36s;">Responsive</span></div>
             </div>
@@ -683,13 +651,13 @@
         </div>
       </div>
       <!-- Skill Card 2 -->
-      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-left" data-aos-delay="150">
+      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;--skill-color:#a78bfa;" data-skill-color data-aos="fade-left" data-aos-delay="150">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
           <div class="skill-icon-wrap">
               <div class="skill-icon-glow" style="background:rgba(167,139,250,0.1);">
                 <i class="fas fa-server" style="color:#a78bfa;filter:drop-shadow(0 0 8px #a78bfa);" aria-hidden="true"></i>
-                <style>.skill-icon-glow::after{background:#a78bfa;}</style>
+                
               </div>
               <div class="skill-tags"><span class="skill-tag" style="color:#3b82f6;background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.35);animation-delay:0.08s;">Python</span><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.3);animation-delay:0.15s;">REST</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.22s;">APIs</span><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.3);animation-delay:0.29s;">Flask</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);animation-delay:0.36s;">Logic</span></div>
             </div>
@@ -701,13 +669,13 @@
         </div>
       </div>
       <!-- Skill Card 3 -->
-      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-right" data-aos-delay="200">
+      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;--skill-color:#f472b6;" data-skill-color data-aos="fade-right" data-aos-delay="200">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
           <div class="skill-icon-wrap">
               <div class="skill-icon-glow" style="background:rgba(244,114,182,0.1);">
                 <i class="fas fa-paint-brush" style="color:#f472b6;filter:drop-shadow(0 0 8px #f472b6);" aria-hidden="true"></i>
-                <style>.skill-icon-glow::after{background:#f472b6;}</style>
+                
               </div>
               <div class="skill-tags"><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.35);animation-delay:0.08s;">Figma</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.15s;">Glassmorphism</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.22s;">Wireframe</span><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.3);animation-delay:0.29s;">Design Systems</span></div>
             </div>
@@ -719,13 +687,13 @@
         </div>
       </div>
       <!-- Skill Card 4 -->
-      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;" data-aos="fade-left" data-aos-delay="250">
+      <div class="glass-card tilt-card" style="padding:1.6rem 2rem;--skill-color:#4ade80;" data-skill-color data-aos="fade-left" data-aos-delay="250">
         <div class="shine-effect"></div>
         <div style="display:flex;align-items:center;gap:1.8rem;">
           <div class="skill-icon-wrap">
               <div class="skill-icon-glow" style="background:rgba(74,222,128,0.1);">
                 <i class="fas fa-database" style="color:#4ade80;filter:drop-shadow(0 0 8px #4ade80);" aria-hidden="true"></i>
-                <style>.skill-icon-glow::after{background:#4ade80;}</style>
+                
               </div>
               <div class="skill-tags"><span class="skill-tag" style="color:#4ade80;background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.35);animation-delay:0.08s;">MySQL</span><span class="skill-tag" style="color:#67e8f9;background:rgba(103,232,249,.1);border-color:rgba(103,232,249,.3);animation-delay:0.15s;">Queries</span><span class="skill-tag" style="color:#fbbf24;background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);animation-delay:0.22s;">Joins</span><span class="skill-tag" style="color:#a78bfa;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);animation-delay:0.29s;">Schema</span><span class="skill-tag" style="color:#f472b6;background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.3);animation-delay:0.36s;">Indexes</span></div>
             </div>
@@ -751,19 +719,19 @@
       </div>
       <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;opacity:.7;">Languages</div>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem;" role="list" aria-label="Programming languages">
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" style="width:20px;height:20px;"> HTML</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" style="width:20px;height:20px;"> CSS</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" style="width:20px;height:20px;"> JavaScript</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" style="width:20px;height:20px;"> Python</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" style="width:20px;height:20px;"> MySQL</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> HTML</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> CSS</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> JavaScript</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> Python</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> MySQL</span>
       </div>
       <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;opacity:.7;">Tools &amp; Environment</div>
       <div style="display:flex;flex-wrap:wrap;gap:12px;" role="list" aria-label="Development tools">
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" style="width:20px;height:20px;"> Git</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" style="width:20px;height:20px;filter:invert(1)"> GitHub</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" style="width:20px;height:20px;"> VS Code</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" style="width:20px;height:20px;"> Figma</span>
-        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="" style="width:20px;height:20px;"> Bootstrap</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> Git</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;filter:invert(1)"> GitHub</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> VS Code</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> Figma</span>
+        <span class="tool-badge" role="listitem"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="" width="20" height="20" loading="lazy" decoding="async" style="width:20px;height:20px;"> Bootstrap</span>
       </div>
     </div>
   </div>
@@ -824,67 +792,167 @@
 <section id="projects" style="padding:4rem 0;" aria-labelledby="projects-heading">
   <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;">
     <div style="text-align:center;margin-bottom:8px;" data-aos="fade-down"><span style="font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-1);background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);padding:4px 14px;border-radius:50px;" aria-hidden="true">Work</span></div>
-    <h2 id="projects-heading" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;text-align:center;margin-bottom:3rem;" data-aos="fade-up">Projects</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="projects-grid">
+    <h2 id="projects-heading" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;text-align:center;margin-bottom:.5rem;" data-aos="fade-up">GitHub Repositories</h2>
+    <p style="text-align:center;color:var(--text-secondary);font-size:.92rem;margin-bottom:2.5rem;" data-aos="fade-up">Live from <a href="https://github.com/seijicxz111" target="_blank" rel="noopener" style="color:var(--accent-1);text-decoration:none;font-weight:600;">@seijicxz111</a></p>
 
-      <!-- Project 1 -->
-      <article class="glass-card tilt-card" style="padding:0;height:100%;display:flex;flex-direction:column;" data-aos="fade-up" data-aos-delay="100">
-        <div class="shine-effect"></div>
-        <div class="project-preview" style="background:linear-gradient(135deg,#7c3aed22,#0891b222);border-radius:24px 24px 0 0;">
-          <i class="fas fa-globe" style="font-size:3rem;opacity:.4;" class="grad-text" aria-hidden="true"></i>
-        </div>
-        <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;">
-          <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">Portfolio Website</h3>
-          <p style="font-size:.85rem;color:var(--text-secondary);flex:1;margin-bottom:12px;">A personal portfolio built with HTML, CSS, and JavaScript featuring glassmorphism design and interactive animations.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
-            <span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span>
-          </div>
-          <div style="display:flex;gap:12px;align-items:center;">
-            <a href="https://github.com/seijicxz111" class="proj-link" target="_blank" rel="noopener" aria-label="Portfolio Website - View Code on GitHub"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
-            <a href="#" class="proj-link" target="_blank" rel="noopener" aria-label="Portfolio Website - View Live Demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live</a>
-            <button class="proj-detail-btn" data-project="0" style="margin-left:auto;" aria-label="View details for Portfolio Website">Details <i class="fas fa-arrow-right" style="font-size:.7rem;" aria-hidden="true"></i></button>
-          </div>
-        </div>
-      </article>
+    <!-- Repo filter bar -->
+    <div id="repo-filter-bar" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:2rem;" data-aos="fade-up">
+      <button class="repo-filter-btn active" data-lang="all">All</button>
+    </div>
 
-      <!-- Project 2 -->
-      <article class="glass-card tilt-card" style="padding:0;height:100%;display:flex;flex-direction:column;" data-aos="fade-up" data-aos-delay="200">
-        <div class="shine-effect"></div>
-        <div class="project-preview" style="background:linear-gradient(135deg,#be185d22,#7c3aed22);border-radius:24px 24px 0 0;">
-          <i class="fas fa-code" style="font-size:3rem;opacity:.4;" aria-hidden="true"></i>
-        </div>
-        <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;">
-          <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">Web App Project</h3>
-          <p style="font-size:.85rem;color:var(--text-secondary);flex:1;margin-bottom:12px;">A full-stack web application with Python backend and MySQL database integration for data management.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
-            <span class="proj-tag">Python</span><span class="proj-tag">MySQL</span><span class="proj-tag">CSS</span>
-          </div>
-          <div style="display:flex;gap:12px;align-items:center;">
-            <a href="https://github.com/seijicxz111" class="proj-link" target="_blank" rel="noopener" aria-label="Web App Project - View Code on GitHub"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
-            <a href="#" class="proj-link" target="_blank" rel="noopener" aria-label="Web App Project - View Live Demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live</a>
-            <button class="proj-detail-btn" data-project="1" style="margin-left:auto;" aria-label="View details for Web App Project">Details <i class="fas fa-arrow-right" style="font-size:.7rem;" aria-hidden="true"></i></button>
-          </div>
-        </div>
-      </article>
+    <!-- Repo grid -->
+    <div id="repos-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;" class="projects-grid">
+      <!-- Skeleton loaders -->
+      <div class="repo-skeleton glass-card" style="height:200px;"></div>
+      <div class="repo-skeleton glass-card" style="height:200px;"></div>
+      <div class="repo-skeleton glass-card" style="height:200px;"></div>
+    </div>
 
-      <!-- Coming soon card -->
-      <div class="glass-card" style="display:flex;align-items:center;justify-content:center;min-height:260px;border-style:dashed;" data-aos="fade-up" data-aos-delay="300" aria-label="More projects coming soon">
-        <div style="text-align:center;">
-          <div style="font-size:2rem;opacity:.3;color:var(--text-primary);margin-bottom:10px;" aria-hidden="true"><i class="fas fa-plus"></i></div>
-          <p style="font-size:.85rem;color:var(--text-muted);margin:0;">More coming soon</p>
-        </div>
-      </div>
+    <div id="repos-error" style="display:none;text-align:center;padding:3rem;color:var(--text-muted);">
+      <i class="fas fa-exclamation-circle" style="font-size:2rem;margin-bottom:12px;display:block;opacity:.4;"></i>
+      <p style="margin:0;font-size:.9rem;">Could not load repositories. <a href="https://github.com/seijicxz111" target="_blank" rel="noopener" style="color:var(--accent-1);">View on GitHub →</a></p>
+    </div>
 
+    <!-- View all link -->
+    <div style="text-align:center;margin-top:2.5rem;" data-aos="fade-up">
+      <a href="https://github.com/seijicxz111?tab=repositories" target="_blank" rel="noopener" class="btn-glass-primary" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+        <i class="fab fa-github"></i> View All on GitHub
+      </a>
     </div>
   </div>
 </section>
+
 <style>
+  /* ── Repo cards ── */
+  .repo-card { display:flex;flex-direction:column;padding:1.4rem;height:100%;min-height:180px;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer; }
+  .repo-card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(180,0,180,0.15); }
+  .repo-name { font-size:.95rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;display:flex;align-items:center;gap:7px;word-break:break-word; }
+  .repo-name i { color:var(--accent-1);font-size:.85rem;flex-shrink:0; }
+  .repo-desc { font-size:.82rem;color:var(--text-secondary);flex:1;margin-bottom:12px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
+  .repo-meta { display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto; }
+  .repo-lang-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+  .repo-lang-label { font-size:.75rem;color:var(--text-secondary);font-weight:600; }
+  .repo-stat { font-size:.75rem;color:var(--text-muted);display:flex;align-items:center;gap:4px; }
+  .repo-stat i { font-size:.7rem; }
+  .repo-topic { font-size:.65rem;font-weight:600;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:var(--accent-1);padding:2px 8px;border-radius:50px;white-space:nowrap; }
+  /* Skeleton */
+  .repo-skeleton { animation:skel-pulse 1.5s ease-in-out infinite;border-radius:20px; }
+  @keyframes skel-pulse { 0%,100%{opacity:.5}50%{opacity:.25} }
+  /* Filter buttons */
+  .repo-filter-btn { background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:50px;padding:5px 16px;font-size:.76rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all .2s; }
+  .repo-filter-btn:hover,.repo-filter-btn.active { background:rgba(167,139,250,0.15);border-color:rgba(167,139,250,0.4);color:var(--accent-1); }
+  /* Lang color map */
+  .lang-js { background:#f1e05a; } .lang-ts { background:#3178c6; }
+  .lang-py { background:#3572A5; } .lang-html { background:#e34c26; }
+  .lang-css { background:#563d7c; } .lang-java { background:#b07219; }
+  .lang-cpp { background:#f34b7d; } .lang-c { background:#555555; }
+  .lang-other { background:#8e8e8e; }
+  @media(max-width:767px) { .projects-grid { grid-template-columns:1fr !important; } }
+
+  /* proj-link kept for modal compatibility */
   .proj-link { font-size:.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:color .2s; }
   .proj-link:hover { color:var(--accent-1); }
-  .proj-detail-btn { background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:600;color:var(--accent-1);cursor:pointer;transition:all .2s; }
-  .proj-detail-btn:hover { background:rgba(167,139,250,0.2);transform:translateX(2px); }
-  @media(max-width:767px) { .projects-grid { grid-template-columns:1fr !important; } }
 </style>
+
+<script>
+(async function loadGitHubRepos() {
+  const GITHUB_USER = 'seijicxz111';
+  const grid = document.getElementById('repos-grid');
+  const errEl = document.getElementById('repos-error');
+  const filterBar = document.getElementById('repo-filter-bar');
+
+  // Language → CSS class + color
+  const langMeta = {
+    'JavaScript': { cls:'lang-js', color:'#f1e05a' },
+    'TypeScript': { cls:'lang-ts', color:'#3178c6' },
+    'Python':     { cls:'lang-py', color:'#3572A5' },
+    'HTML':       { cls:'lang-html', color:'#e34c26' },
+    'CSS':        { cls:'lang-css', color:'#563d7c' },
+    'Java':       { cls:'lang-java', color:'#b07219' },
+    'C++':        { cls:'lang-cpp', color:'#f34b7d' },
+    'C':          { cls:'lang-c', color:'#555555' },
+  };
+  function getLangColor(lang) {
+    return langMeta[lang] ? langMeta[lang].color : '#8e8e8e';
+  }
+  function getLangCls(lang) {
+    return langMeta[lang] ? langMeta[lang].cls : 'lang-other';
+  }
+
+  let allRepos = [];
+  let activeFilter = 'all';
+
+  function renderRepos(repos) {
+    if (!repos.length) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);font-size:.9rem;">No repositories found for this filter.</div>`;
+      return;
+    }
+    grid.innerHTML = repos.map((repo, i) => {
+      const lang = repo.language || '';
+      const desc = repo.description || 'No description provided.';
+      const topics = (repo.topics || []).slice(0, 3);
+      const langColor = getLangColor(lang);
+      const stars = repo.stargazers_count || 0;
+      const forks = repo.forks_count || 0;
+      const isForked = repo.fork;
+
+      return `
+      <a href="${repo.html_url}" target="_blank" rel="noopener" class="glass-card repo-card tilt-card" aria-label="${repo.name} repository" style="animation-delay:${i*50}ms">
+        <div class="shine-effect"></div>
+        <div class="repo-name">
+          <i class="fa${isForked ? 's fa-code-branch' : 'b fa-github'}"></i>
+          ${repo.name}
+        </div>
+        <p class="repo-desc">${desc}</p>
+        ${topics.length ? `<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">${topics.map(t=>`<span class="repo-topic">${t}</span>`).join('')}</div>` : ''}
+        <div class="repo-meta">
+          ${lang ? `<span class="repo-lang-dot ${getLangCls(lang)}" style="background:${langColor};"></span><span class="repo-lang-label">${lang}</span>` : ''}
+          ${stars ? `<span class="repo-stat"><i class="fas fa-star"></i>${stars}</span>` : ''}
+          ${forks ? `<span class="repo-stat"><i class="fas fa-code-branch"></i>${forks}</span>` : ''}
+        </div>
+      </a>`;
+    }).join('');
+  }
+
+  function applyFilter(lang) {
+    activeFilter = lang;
+    const filtered = lang === 'all' ? allRepos : allRepos.filter(r => r.language === lang);
+    renderRepos(filtered);
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated&type=owner`);
+    if (!res.ok) throw new Error('API error');
+    allRepos = await res.json();
+
+    // Sort: pinned-style (stars desc, then updated)
+    allRepos.sort((a,b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
+
+    // Build language filter buttons
+    const langs = [...new Set(allRepos.map(r => r.language).filter(Boolean))].sort();
+    langs.forEach(lang => {
+      const btn = document.createElement('button');
+      btn.className = 'repo-filter-btn';
+      btn.dataset.lang = lang;
+      btn.innerHTML = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${getLangColor(lang)};margin-right:5px;"></span>${lang}`;
+      filterBar.appendChild(btn);
+    });
+
+    filterBar.addEventListener('click', e => {
+      const btn = e.target.closest('.repo-filter-btn');
+      if (!btn) return;
+      filterBar.querySelectorAll('.repo-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.lang);
+    });
+
+    renderRepos(allRepos);
+  } catch(err) {
+    grid.style.display = 'none';
+    errEl.style.display = 'block';
+  }
+})();
+</script>
 
 <!-- ══════════════ ARTICLES / BLOG ══════════════ -->
 <section id="articles" style="padding:4rem 0;" aria-labelledby="articles-heading">
@@ -1018,7 +1086,7 @@
             <span style="font-family:'Space Mono',monospace;font-size:.75rem;color:var(--text-muted);margin-left:auto;">2023 – Present</span>
           </div>
           <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px;">Bachelor of Science in Information Technology</h3>
-          <p style="font-size:.82rem;color:var(--accent-1);font-weight:600;margin-bottom:8px;">Your University Name</p>
+          <p style="font-size:.82rem;color:var(--accent-1);font-weight:600;margin-bottom:8px;">Pamantasan ng Lungsod ng San Pablo</p>
           <p style="font-size:.84rem;color:var(--text-secondary);margin:0;">Studying core computer science concepts, web development, database systems, and software engineering principles.</p>
         </div>
       </div>
@@ -1046,7 +1114,7 @@
             <span style="font-family:'Space Mono',monospace;font-size:.75rem;color:var(--text-muted);margin-left:auto;">2024</span>
           </div>
           <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px;">Python for Everybody</h3>
-          <p style="font-size:.82rem;color:var(--accent-2);font-weight:600;margin-bottom:8px;">Coursera / University of Michigan</p>
+          <p style="font-size:.82rem;color:var(--accent-2);font-weight:600;margin-bottom:8px;">Coursera </p>
           <p style="font-size:.84rem;color:var(--text-secondary);margin:0;">Learned Python fundamentals including data structures, web scraping, databases, and data visualization.</p>
         </div>
       </div>
@@ -1069,7 +1137,7 @@
       </div>
       <div style="text-align:center;">
         <div class="chart-wrapper">
-          <img src="https://ghchart.rshah.org/seijicxz111" alt="GitHub contribution chart for seijicxz111" style="width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;opacity:.9;filter:brightness(1.1);">
+          <img src="https://ghchart.rshah.org/seijicxz111" alt="GitHub contribution chart for seijicxz111" width="1100" height="112" loading="lazy" decoding="async" style="width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;opacity:.9;filter:brightness(1.1);">
         </div>
       </div>
     </div>
@@ -1113,7 +1181,8 @@
 
       <div class="glass-card" style="padding:2.5rem;" data-aos="fade-left">
         <div class="shine-effect"></div>
-        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST" novalidate>
+        <!-- ⚠️ Replace YOUR_FORM_ID below: sign up free at formspree.io, create a form, copy the ID -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <div>
               <label for="contact-name" style="font-size:.78rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;display:block;">Name</label>
@@ -1178,35 +1247,20 @@
 </section>
 
 <!-- ══════════════ VISITOR COUNTER ══════════════ -->
-<div id="visitor-bar" role="status" aria-live="polite" aria-label="Site visitor statistics">
-  <div class="vbar-item">
-    <span class="vbar-dot"></span>
-    <span class="vbar-num" id="active-visitors">…</span>
-    <span class="vbar-label">active now</span>
-  </div>
-  <div class="vbar-sep"></div>
-  <div class="vbar-item">
-    <span class="vbar-dot orange"></span>
-    <span class="vbar-num" id="total-views">…</span>
-    <span class="vbar-label">total views</span>
-  </div>
-  <div class="vbar-sep"></div>
-  <div class="vbar-item" style="font-size:.7rem;color:var(--text-muted);">
-    <i class="fas fa-globe" style="font-size:.65rem;margin-right:4px;"></i>
-    <span>live stats</span>
-  </div>
-</div>
-
 <!-- ══════════════ FOOTER ══════════════ -->
-<footer class="glass-footer" style="padding:1.5rem 0; margin-bottom:44px;" role="contentinfo">
+<footer class="glass-footer" style="padding:1.5rem 0;" role="contentinfo">
   <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-    <p style="color:var(--text-muted);font-size:.82rem;margin:0;">&copy; 2024 Seijicxz. All rights reserved.</p>
+    <p style="color:var(--text-muted);font-size:.82rem;margin:0;">&copy; 2026 Seijicxz. All rights reserved.</p>
+    <p style="color:var(--text-muted);font-size:.78rem;margin:0;display:flex;align-items:center;gap:6px;">
+      <i class="fas fa-pen-to-square" style="color:var(--accent-1);font-size:.7rem;"></i>
+      Last updated <span style="color:var(--text-secondary);font-weight:600;">March 2026</span>
+    </p>
     <p style="color:var(--text-muted);font-size:.82rem;margin:0;">Press <kbd style="background:rgba(255,255,255,0.08);border:1px solid var(--glass-border);border-radius:5px;padding:1px 6px;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-muted);">Ctrl K</kbd> to navigate</p>
   </div>
 </footer>
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 // ─── Project data ─────────────────────────────────
 const PROJECTS = [
@@ -1235,7 +1289,7 @@ const PROJECTS = [
 ];
 
 // ─── AOS ──────────────────────────────────────────
-AOS.init({ duration: 800, once: true });
+window.addEventListener('load', function() { if(typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true }); });
 
 // ─── Theme ────────────────────────────────────────
 const html = document.documentElement;
@@ -1274,7 +1328,7 @@ window.addEventListener('scroll', () => {
   const alpha = Math.min(0.55 + st / 2000, 0.9);
   nav.style.backdropFilter = `blur(${blur}px)`;
   nav.style.background = html.getAttribute('data-theme') === 'dark'
-    ? `rgba(10,10,26,${alpha})` : `rgba(240,244,255,${alpha})`;
+    ? `rgba(7,0,13,${alpha})` : `rgba(240,244,255,${alpha})`;
 }, { passive: true });
 document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -1305,10 +1359,10 @@ resizeCanvases();
 window.addEventListener('resize', resizeCanvases, { passive: true });
 
 window._aBlobs = [
-  { x: 0.2, y: 0.3, r: 0.38, hue: 260, speed: 0.00007 },
-  { x: 0.7, y: 0.6, r: 0.42, hue: 190, speed: 0.0001 },
-  { x: 0.5, y: 0.1, r: 0.35, hue: 320, speed: 0.00006 },
-  { x: 0.85, y: 0.2, r: 0.3, hue: 210, speed: 0.00009 },
+  { x: 0.2, y: 0.3, r: 0.38, hue: 310, speed: 0.00007 },
+  { x: 0.7, y: 0.6, r: 0.42, hue: 290, speed: 0.0001 },
+  { x: 0.5, y: 0.1, r: 0.35, hue: 330, speed: 0.00006 },
+  { x: 0.85, y: 0.2, r: 0.3, hue: 270, speed: 0.00009 },
 ];
 let aT = 0;
 (function drawAurora() {
@@ -1357,7 +1411,12 @@ const pts = Array.from({ length: 80 }, () => ({
 })();
 
 // ─── Three.js hero 3D ─────────────────────────────
-(function initThree() {
+(function initThreeWhenReady() {
+  function tryInit() {
+    if (typeof THREE === 'undefined') { setTimeout(tryInit, 100); return; }
+    initThree();
+  }
+  function initThree() {
   const canvas = document.getElementById('hero-3d');
   const heroCard = canvas.parentElement;
   const scene = new THREE.Scene();
@@ -1421,6 +1480,8 @@ const pts = Array.from({ length: 80 }, () => ({
     );
     renderer.render(scene, camera);
   })();
+  } // end initThree
+  tryInit();
 })();
 
 // ─── Shine cards ──────────────────────────────────
@@ -1615,15 +1676,46 @@ document.getElementById('copy-email-btn').addEventListener('click', () => {
 document.getElementById('contact-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('send-btn');
+  const form = e.target;
+
+  // Basic validation
+  const name = form.querySelector('[name="name"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const message = form.querySelector('[name="message"]').value.trim();
+  if (!name || !email || !message) {
+    showToast('Please fill in all required fields.');
+    return;
+  }
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) { showToast('Please enter a valid email address.'); return; }
+
   btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i>Sending…';
   btn.disabled = true;
-  await new Promise(r => setTimeout(r, 1500));
-  btn.innerHTML = '<i class="fas fa-check" style="margin-right:8px;"></i>Sent!';
-  setTimeout(() => {
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if (res.ok) {
+      btn.innerHTML = '<i class="fas fa-check" style="margin-right:8px;"></i>Message Sent!';
+      btn.style.background = 'linear-gradient(135deg,#4ade80,#22d3ee)';
+      showToast('✅ Message sent! I\'ll reply soon.');
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:8px;"></i>Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } else {
+      throw new Error('Form submission failed');
+    }
+  } catch {
     btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:8px;"></i>Send Message';
     btn.disabled = false;
-    e.target.reset();
-  }, 3000);
+    showToast('❌ Could not send. Try emailing directly.');
+  }
 });
 
 // ─── GitHub stats ─────────────────────────────────
@@ -1650,21 +1742,6 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
       if (el) el.textContent = total;
     }
   } catch {}
-})();
-
-// ─── Spotify (simulated — real impl needs backend token) ──
-(function initSpotify() {
-  // NOTE: Real Spotify "currently playing" requires a backend token exchange.
-  // This shows a placeholder. Replace with your own backend endpoint.
-  const tracks = [
-    { name: 'Blinding Lights', artist: 'The Weeknd' },
-    { name: 'Levitating', artist: 'Dua Lipa' },
-    { name: 'Stay', artist: 'The Kid LAROI, Justin Bieber' },
-  ];
-  // Simulate "not playing" by default (no real token)
-  const bars = document.getElementById('spotify-bars');
-  bars.classList.add('spotify-not-playing');
-  // You can replace this with: fetch('/api/spotify/now-playing').then(...)
 })();
 
 // ─── HEXAGON SKILL GRID ───────────────────────────
@@ -1899,66 +1976,6 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
 })();
 
 // ─── VISITOR COUNTER ────────────────────────────
-(function initVisitorCounter() {
-  const KEY_VIEWS = 'portf_total_views';
-  const KEY_SESSION = 'portf_session';
-  const KEY_ACTIVE_TS = 'portf_active_ts_' + Math.floor(Date.now() / 30000); // 30s window
-
-  // Increment total views (localStorage-based)
-  const views = parseInt(localStorage.getItem(KEY_VIEWS) || '0') + 1;
-  localStorage.setItem(KEY_VIEWS, views);
-
-  // Active visitor simulation: uses timestamp slots in sessionStorage-like keys
-  // Real implementation would need a backend; we simulate with localStorage slots
-  const sessionId = sessionStorage.getItem(KEY_SESSION) || (() => {
-    const id = Math.random().toString(36).slice(2,10);
-    sessionStorage.setItem(KEY_SESSION, id);
-    return id;
-  })();
-
-  // Mark this session as active in current 30s slot
-  const activeKey = 'portf_av_' + Math.floor(Date.now() / 30000);
-  const activeSlot = JSON.parse(localStorage.getItem(activeKey) || '[]');
-  if (!activeSlot.includes(sessionId)) activeSlot.push(sessionId);
-  localStorage.setItem(activeKey, JSON.stringify(activeSlot));
-
-  // Count active: current + previous slot
-  const prevKey = 'portf_av_' + (Math.floor(Date.now() / 30000) - 1);
-  const prev = JSON.parse(localStorage.getItem(prevKey) || '[]');
-  const curr = JSON.parse(localStorage.getItem(activeKey) || '[]');
-  const active = new Set([...curr, ...prev]).size;
-
-  // Render with animated count-up
-  function countUp(el, target, suffix='') {
-    if (!el) return;
-    let n = 0;
-    const step = Math.max(1, Math.ceil(target / 50));
-    const t = setInterval(() => {
-      n = Math.min(n + step, target);
-      el.textContent = n.toLocaleString() + suffix;
-      if (n >= target) clearInterval(t);
-    }, 30);
-  }
-
-  // Small delay so user sees the "…" then numbers animate in
-  setTimeout(() => {
-    countUp(document.getElementById('active-visitors'), active);
-    countUp(document.getElementById('total-views'), views);
-  }, 800);
-
-  // Refresh active count every 30s
-  setInterval(() => {
-    const key = 'portf_av_' + Math.floor(Date.now() / 30000);
-    const slot = JSON.parse(localStorage.getItem(key) || '[]');
-    if (!slot.includes(sessionId)) { slot.push(sessionId); localStorage.setItem(key, JSON.stringify(slot)); }
-    const p = JSON.parse(localStorage.getItem('portf_av_' + (Math.floor(Date.now() / 30000)-1)) || '[]');
-    const s = JSON.parse(localStorage.getItem(key) || '[]');
-    const a = new Set([...s,...p]).size;
-    const el = document.getElementById('active-visitors');
-    if (el) el.textContent = a;
-  }, 30000);
-})();
-
 // ─── COLLABORATIVE MIND MAP ──────────────────────
 (function initMindMap() {
   const svg = document.getElementById('mindmap-svg');
