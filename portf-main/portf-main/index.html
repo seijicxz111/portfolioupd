@@ -6,58 +6,19 @@
   <title>Seijicxz — Portfolio</title>
   <meta name="description" content="CJ Steeve Cadenas — Aspiring Web Developer & UI Designer from the Philippines.">
   <link rel="icon" href="logo.png" type="image/x-icon">
-  <!-- Preload LCP hero image -->
-  <link rel="preload" as="image" href="https://64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png">
+  <!-- Preload hero image as WebP for faster LCP -->
+  <link rel="preload" as="image" href="https://images.weserv.nl/?url=64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png&w=320&h=320&output=webp&q=85" type="image/webp">
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: ['attribute', '[data-theme="dark"]'],
-      theme: {
-        extend: {
-          colors: {
-            accent1: '#a78bfa',
-            accent2: '#67e8f9',
-            accent3: '#f0abfc',
-            'bg-base': '#07000d',
-          },
-          fontFamily: {
-            main: ['Sora', 'sans-serif'],
-            mono: ['"Space Mono"', 'monospace'],
-          },
-          animation: {
-            'avail-pulse': 'avail-pulse 2s ease-in-out infinite',
-            'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
-            'ring-pulse-delay': 'ring-pulse 3s ease-in-out infinite 1.5s',
-            'blink': 'blink 0.8s step-end infinite',
-            'pre-pulse': 'pre-pulse 1s ease-in-out infinite alternate',
-            'pre-load': 'pre-load 1.6s cubic-bezier(.4,0,.2,1) forwards',
-            'cmd-in': 'cmd-in 0.25s cubic-bezier(.34,1.56,.64,1)',
-            'float': 'float 6s ease-in-out infinite',
-            'modal-in': 'modal-in 0.3s cubic-bezier(.34,1.56,.64,1)',
-            'toast-in': 'toast-in 0.4s cubic-bezier(.34,1.56,.64,1)',
-            'spin-slow': 'spin 20s linear infinite',
-          },
-          keyframes: {
-            'avail-pulse': { '0%,100%': { transform: 'scale(1)', opacity: '1' }, '50%': { transform: 'scale(1.4)', opacity: '0.6' } },
-            'ring-pulse': { '0%,100%': { opacity: '0.6', transform: 'translate(-50%,-50%) scale(1)' }, '50%': { opacity: '0.2', transform: 'translate(-50%,-50%) scale(1.04)' } },
-            'blink': { '0%,100%': { opacity: '1' }, '50%': { opacity: '0' } },
-            'pre-pulse': { 'from': { opacity: '0.5' }, 'to': { opacity: '1' } },
-            'pre-load': { 'to': { width: '100%' } },
-            'cmd-in': { 'from': { transform: 'scale(.92) translateY(-16px)', opacity: '0' }, 'to': { transform: 'none', opacity: '1' } },
-            'float': { '0%,100%': { transform: 'translateY(0px) rotate(0deg)' }, '33%': { transform: 'translateY(-20px) rotate(5deg)' }, '66%': { transform: 'translateY(-10px) rotate(-3deg)' } },
-            'modal-in': { 'from': { transform: 'scale(0.9) translateY(20px)', opacity: '0' }, 'to': { transform: 'none', opacity: '1' } },
-            'toast-in': { 'from': { transform: 'translateX(-50%) translateY(80px)', opacity: '0' }, 'to': { transform: 'translateX(-50%) translateY(0)', opacity: '1' } },
-          },
-          backgroundImage: {
-            'grad-accent': 'linear-gradient(135deg, #a78bfa, #67e8f9)',
-            'grad-accent-v': 'linear-gradient(to bottom, #a78bfa, #67e8f9, transparent)',
-          },
-        }
-      }
-    }
-  </script>
+  <!-- No Tailwind CDN - replaced with plain CSS below -->
+  <style>
+    /* Tailwind replacement utilities */
+    body { font-family: 'Sora', system-ui, -apple-system, sans-serif; }
+    @media(min-width:640px) { #ctrlk-hint { display:inline !important; } }
+    .grad-text { background:linear-gradient(135deg,#a78bfa,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    /* Critical: reserve hero image space to prevent CLS */
+    .hero-img-wrap { width:260px;height:260px;flex-shrink:0;border-radius:50%;background:rgba(167,139,250,0.08); }
+  </style>
 
   <!-- Fonts (preconnect + async load with display=swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,7 +93,7 @@
 
 
     /* ── Scroll progress ── */
-    #scroll-progress { position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); z-index:9999; transition:width .1s linear; box-shadow:0 0 10px var(--accent-1); }
+    #scroll-progress { position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,#b4006e,#a78bfa,#f472b6); z-index:9999; transition:width .1s linear; box-shadow:0 0 12px rgba(244,114,182,0.8); }
 
     /* ── Back to top ── */
     #back-to-top { position:fixed; bottom:32px; right:32px; z-index:900; width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); border:none; color:#0a0a1a; font-size:1rem; display:flex; align-items:center; justify-content:center; cursor:none; opacity:0; pointer-events:none; transform:translateY(20px); transition:opacity .3s,transform .3s,box-shadow .3s; box-shadow:0 4px 20px rgba(167,139,250,0.4); }
@@ -386,7 +347,7 @@
     @media(max-width:700px) { .hex-svg { width:60px; height:69px; } .hex-row:nth-child(even) { margin-left:32px; } .hex-icon { font-size:.75rem; } .hex-name { font-size:.42rem; } .hex-pct { display:none; } }
   </style>
 </head>
-<body class="font-main">
+<body>
 
 <!-- Hidden SVG gradient -->
 <svg width="0" height="0" style="position:absolute">
@@ -474,7 +435,7 @@
       <div style="display:flex;align-items:center;gap:12px;">
         <!-- Command trigger -->
         <button class="btn-ghost" id="cmd-trigger" aria-label="Open command palette (Ctrl+K)" title="Command palette (Ctrl+K)">
-          <i class="fas fa-search"></i><span style="font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-muted);" class="hidden sm:inline">Ctrl+K</span>
+          <i class="fas fa-search"></i><span style="font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-muted);display:none;" id="ctrlk-hint">Ctrl+K</span>
         </button>
         <!-- Theme toggle -->
         <button id="theme-toggle" aria-label="Toggle light/dark theme" style="background:none;border:none;padding:0;cursor:pointer;">
@@ -547,12 +508,18 @@
         </div>
         <div style="text-align:center;margin-top:0;">
           <div style="position:relative;display:inline-block;">
-            <img src="https://64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png"
-                 alt="Profile photo of CJ Steeve Cadenas"
-                 width="260" height="260" loading="eager" decoding="async"
-                 style="width:260px;height:260px;object-fit:cover;border-radius:50%;border:3px solid var(--glass-border);position:relative;z-index:2;box-shadow:0 0 40px rgba(167,139,250,0.3);">
-            <div class="img-ring" aria-hidden="true"></div>
-            <div class="img-ring-2" aria-hidden="true"></div>
+            <!-- Explicit container prevents CLS -->
+            <div style="position:relative;display:inline-block;width:260px;height:260px;flex-shrink:0;">
+              <picture>
+                <source srcset="https://images.weserv.nl/?url=64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png&w=320&h=320&output=webp&q=85" type="image/webp">
+                <img src="https://images.weserv.nl/?url=64.media.tumblr.com/ff21b4f05bb79f16e0dceb7dfad75272/tumblr_mqtho3Fr0n1rgam01o1_1280.png&w=320&h=320&output=jpg&q=85"
+                     alt="Profile photo of CJ Steeve Cadenas"
+                     width="260" height="260" loading="eager" decoding="async" fetchpriority="high"
+                     style="width:260px;height:260px;object-fit:cover;border-radius:50%;border:3px solid var(--glass-border);position:relative;z-index:2;box-shadow:0 0 40px rgba(167,139,250,0.3);">
+              </picture>
+              <div class="img-ring" aria-hidden="true"></div>
+              <div class="img-ring-2" aria-hidden="true"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -629,7 +596,24 @@
     <div style="text-align:center;margin-bottom:8px;" data-aos="fade-down">
       <span style="font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-1);background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);padding:4px 14px;border-radius:50px;" aria-hidden="true">Expertise</span>
     </div>
-    <h2 id="skills-heading" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;text-align:center;margin-bottom:3rem;" data-aos="fade-up">Skills</h2>
+    <h2 id="skills-heading" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;text-align:center;margin-bottom:1.2rem;" data-aos="fade-up">Skills</h2>
+
+    <!-- Currently Learning Strip -->
+    <div data-aos="fade-up" data-aos-delay="50" style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:2.5rem;">
+      <span style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);">Currently Learning →</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);font-size:.78rem;font-weight:700;color:#fbbf24;">
+        <i class="fab fa-react" style="font-size:.85rem;"></i> React
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);font-size:.78rem;font-weight:700;color:#818cf8;">
+        <i class="fab fa-node-js" style="font-size:.85rem;"></i> Node.js
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.3);font-size:.78rem;font-weight:700;color:#38bdf8;">
+        <i class="fas fa-database" style="font-size:.85rem;"></i> REST APIs
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.3);font-size:.78rem;font-weight:700;color:#f472b6;">
+        <span style="font-size:.85rem;font-weight:900;">TS</span> TypeScript
+      </span>
+    </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;" class="skills-grid">
       <!-- Skill Card 1 -->
@@ -1137,7 +1121,7 @@
       </div>
       <div style="text-align:center;">
         <div class="chart-wrapper">
-          <img src="https://ghchart.rshah.org/seijicxz111" alt="GitHub contribution chart for seijicxz111" width="1100" height="112" loading="lazy" decoding="async" style="width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;opacity:.9;filter:brightness(1.1);">
+          <img id="gh-chart" src="https://ghchart.rshah.org/b4006e/seijicxz111" alt="GitHub contribution chart for seijicxz111" width="1100" height="112" loading="lazy" decoding="async" style="width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;opacity:.9;filter:brightness(1.1);">
         </div>
       </div>
     </div>
@@ -1246,8 +1230,83 @@
   </div>
 </section>
 
-<!-- ══════════════ VISITOR COUNTER ══════════════ -->
-<!-- ══════════════ FOOTER ══════════════ -->
+<!-- ══════════════ AVAILABILITY BANNER ══════════════ -->
+<section style="padding:3rem 0 2rem;" aria-label="Availability status">
+  <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;">
+    <div data-aos="fade-up" style="position:relative;overflow:hidden;border-radius:24px;padding:2.5rem 3rem;background:linear-gradient(135deg,rgba(180,0,110,0.18),rgba(167,139,250,0.15),rgba(103,232,249,0.1));border:1px solid rgba(244,114,182,0.25);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+      <!-- Ambient glow -->
+      <div style="position:absolute;top:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(180,0,110,0.25),transparent 70%);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.2),transparent 70%);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="avail-dot"></div>
+          <span style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#4ade80;">Available for Work</span>
+        </div>
+        <h2 style="font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;margin:0 0 8px;color:var(--text-primary);">Let's build something together.</h2>
+        <p style="font-size:.9rem;color:var(--text-secondary);margin:0;max-width:480px;">Open to freelance projects, internships, and full-time opportunities. Based in the Philippines · Remote-friendly.</p>
+      </div>
+      <div style="position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#contact" class="btn-primary" style="white-space:nowrap;"><i class="fas fa-paper-plane" style="margin-right:8px;"></i>Hire Me</a>
+        <a href="#" download class="btn-secondary" style="white-space:nowrap;background:rgba(255,255,255,0.06);"><i class="fas fa-file-arrow-down" style="margin-right:8px;"></i>Download CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MOBILE BOTTOM NAV ══════════════ -->
+<nav id="mobile-bottom-nav" aria-label="Mobile navigation" style="display:none;">
+  <a href="#about" class="mbn-item" aria-label="About"><i class="fas fa-house"></i><span>Home</span></a>
+  <a href="#skills" class="mbn-item" aria-label="Skills"><i class="fas fa-code"></i><span>Skills</span></a>
+  <a href="#projects" class="mbn-item" aria-label="Projects"><i class="fas fa-briefcase"></i><span>Work</span></a>
+  <a href="#contact" class="mbn-item" aria-label="Contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
+</nav>
+
+<style>
+  /* ── Availability banner mobile ── */
+  @media(max-width:600px) {
+    #avail-banner-inner { flex-direction:column !important; text-align:center; }
+  }
+  /* ── Mobile Bottom Nav ── */
+  #mobile-bottom-nav {
+    position:fixed;bottom:0;left:0;right:0;z-index:950;
+    background:rgba(7,0,13,0.92);backdrop-filter:blur(20px);
+    border-top:1px solid var(--glass-border);
+    flex-direction:row;align-items:stretch;justify-content:space-around;
+    padding:0;height:60px;
+  }
+  @media(max-width:767px) { #mobile-bottom-nav { display:flex !important; } }
+  .mbn-item {
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;color:var(--text-muted);text-decoration:none;font-size:.6rem;font-weight:600;
+    letter-spacing:.4px;text-transform:uppercase;transition:color .2s,background .2s;
+    padding:8px 0;border-top:2px solid transparent;
+  }
+  .mbn-item i { font-size:1.1rem; }
+  .mbn-item:hover, .mbn-item.mbn-active { color:var(--accent-1);border-top-color:var(--accent-1); }
+  /* Push footer above mobile nav on mobile */
+  @media(max-width:767px) { footer.glass-footer { margin-bottom:60px; } }
+</style>
+
+<script>
+// ── Mobile bottom nav active state ──
+(function() {
+  const items = document.querySelectorAll('.mbn-item');
+  const sections = ['about','skills','projects','contact'];
+  function updateActive() {
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 200) current = id;
+    });
+    items.forEach(a => {
+      const href = a.getAttribute('href').replace('#','');
+      a.classList.toggle('mbn-active', href === current);
+    });
+  }
+  window.addEventListener('scroll', updateActive, { passive:true });
+  updateActive();
+})();
+</script>
 <footer class="glass-footer" style="padding:1.5rem 0;" role="contentinfo">
   <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
     <p style="color:var(--text-muted);font-size:.82rem;margin:0;">&copy; 2026 Seijicxz. All rights reserved.</p>
@@ -1298,6 +1357,11 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
+  // Update GitHub chart color: magenta for dark, teal for light
+  const chart = document.getElementById('gh-chart');
+  if (chart) chart.src = next === 'dark'
+    ? 'https://ghchart.rshah.org/b4006e/seijicxz111'
+    : 'https://ghchart.rshah.org/7c3aed/seijicxz111';
 });
 
 // ─── Nav mobile ───────────────────────────────────
@@ -1414,7 +1478,8 @@ const pts = Array.from({ length: 80 }, () => ({
 (function initThreeWhenReady() {
   function tryInit() {
     if (typeof THREE === 'undefined') { setTimeout(tryInit, 100); return; }
-    initThree();
+    // Delay init to after paint to avoid forced reflow on load
+    requestIdleCallback ? requestIdleCallback(initThree, {timeout:2000}) : setTimeout(initThree, 500);
   }
   function initThree() {
   const canvas = document.getElementById('hero-3d');
@@ -2219,6 +2284,87 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
   document.getElementById('mm-focus-skills')?.addEventListener('click', () => focusType('skill'));
   document.getElementById('mm-focus-projects')?.addEventListener('click', () => focusType('project'));
   document.getElementById('mm-focus-tools')?.addEventListener('click', () => focusType('tool'));
+})();
+</script>
+
+<!-- ══════════════ ENHANCEMENT SCRIPTS ══════════════ -->
+<script>
+// ── 1. Section entrance animations via IntersectionObserver ──
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .section-reveal { opacity:0; transform:translateY(20px); transition:opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1); will-change:opacity,transform; contain:layout style; }
+    .section-reveal.visible { opacity:1; transform:translateY(0); contain:none; }
+  `;
+  document.head.appendChild(style);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section').forEach(s => { s.classList.add('section-reveal'); observer.observe(s); });
+})();
+
+// ── 2. Smooth active nav highlight with indicator dot ──
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .nav-pill.active { background:rgba(180,0,110,0.12) !important; border-color:rgba(244,114,182,0.35) !important; color:var(--text-primary) !important; }
+    .nav-pill.active::after { content:''; display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--accent-1); margin-left:6px; vertical-align:middle; }
+  `;
+  document.head.appendChild(style);
+})();
+
+// ── 3. Smooth image loading — fade in on load ──
+(function() {
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    img.style.opacity = '0';
+    img.style.transition = 'opacity .5s ease';
+    if (img.complete) { img.style.opacity = '1'; }
+    else { img.addEventListener('load', () => { img.style.opacity = '1'; }); }
+  });
+})();
+
+// ── 4. Copy email toast enhancement ──
+(function() {
+  const btn = document.getElementById('copy-email-btn');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText('cjsteevecadenas0@gmail.com').then(() => {
+      showToast('📋 Email copied to clipboard!');
+    }).catch(() => {
+      showToast('Email: cjsteevecadenas0@gmail.com');
+    });
+  });
+})();
+
+// ── 5. Prefers-reduced-motion: disable heavy animations ──
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const style = document.createElement('style');
+    style.textContent = `*, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }`;
+    document.head.appendChild(style);
+  }
+})();
+
+// ── 6. Skills section — animate progress bars on scroll ──
+(function() {
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  if (!bars.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const pct = el.dataset.pct || el.style.width || '0%';
+        el.style.width = '0%';
+        requestAnimationFrame(() => { el.style.width = pct; });
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => {
+    if (b.style.width && !b.dataset.pct) b.dataset.pct = b.style.width;
+    b.style.width = '0%';
+    obs.observe(b);
+  });
 })();
 </script>
 </body>
